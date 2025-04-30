@@ -1,24 +1,14 @@
-# README
+# Stripe Terminal API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API Only to showcase full E2E concepts
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+- copy `.env.example` to `.env`
+  - INCLUDE YOUR STRIPE KEY
+- run `./bin/setup`
+- `./bin/dev`
 
-* System dependencies
+## Postman
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+... TODO
