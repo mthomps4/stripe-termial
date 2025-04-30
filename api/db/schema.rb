@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_30_173521) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_30_204012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,4 +28,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_30_173521) do
     t.index ["name"], name: "index_locations_on_name", unique: true
     t.index ["stripe_id"], name: "index_locations_on_stripe_id", unique: true
   end
+
+  create_table "readers", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.string "stripe_id"
+    t.string "label"
+    t.string "serial_number"
+    t.string "reader_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["label"], name: "index_readers_on_label", unique: true
+    t.index ["location_id"], name: "index_readers_on_location_id"
+    t.index ["serial_number"], name: "index_readers_on_serial_number", unique: true
+    t.index ["stripe_id"], name: "index_readers_on_stripe_id", unique: true
+  end
+
+  add_foreign_key "readers", "locations"
 end

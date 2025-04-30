@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: one
+  stripe_id: MyString
+  label: MyString
+  serial_number: MyString
+  reader_type: MyString
+
+two:
+  location: two
+  stripe_id: MyString
+  label: MyString
+  serial_number: MyString
+  reader_type: MyString

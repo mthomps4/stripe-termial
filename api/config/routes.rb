@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :locations
+  scope "api/v1" do
+    resources :locations
+    resources :readers
+  end
 end
