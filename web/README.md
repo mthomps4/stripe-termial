@@ -2,35 +2,43 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+- Copy `.env.example` to `.env`
+- Get Deps:
+
+```bash
+npm i
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## NOTES / TODO
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Web Components (NextJS)
 
-## Learn More
+WEB: Create location management interface
+WEB: Create reader registration interface
+WEB: Create reader selection and connection interface
+WEB: Implement Stripe Terminal JS SDK initialization
+WEB: Create payment collection interface
+WEB: Create transaction history and reporting interface
+WEB: Implement error handling and recovery flows
+WEB: Create offline mode detection and synchronization
+WEB: Create configuration interface for reader settings
 
-To learn more about Next.js, take a look at the following resources:
+### Stripe Dashboard Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+STRIPE: Enable Stripe Terminal in dashboard
+STRIPE: Configure webhook endpoints for Terminal events
+STRIPE: Set up location capabilities
+STRIPE: Configure reader limits and settings
+STRIPE: Create test mode Terminal readers (for development)
+STRIPE: Configure reporting and notification preferences
+STRIPE: Set up team member access and permissions
+STRIPE: Configure accepted payment methods
+STRIPE: Set up tax and currency settings
