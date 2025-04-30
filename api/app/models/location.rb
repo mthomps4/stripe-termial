@@ -9,4 +9,12 @@ class Location < ApplicationRecord
   def update_stripe_location
     LocationService.update_location(self)
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["address_line1", "address_line2", "city", "country", "created_at", "id", "name", "postal_code", "state", "stripe_id", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 end

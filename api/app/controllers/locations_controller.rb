@@ -2,8 +2,21 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :update, :destroy]
 
   def index
-    @locations = Location.all
-    render json: @locations
+    @q = Location.ransack(params[:q])
+    per_page = params[:per_page] || 10
+    page = params[:page] || 1
+    @locations = @q.result(distinct: true).page(page).per(per_page)
+    render json: {
+      locations: @locations,
+      meta: {
+        total_pages: @locations.total_pages,
+        total_count: @locations.total_count,
+        current_page: @locations.current_page,
+        per_page: @locations.limit_value,
+        next_page: @locations.next_page,
+        prev_page: @locations.prev_page
+      }
+    }
   end
 
   def show
