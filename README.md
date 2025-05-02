@@ -1,3 +1,5 @@
+![Sweet Cuts Logo](./sweet_cuts.png)
+
 # Stripe M2 Reader Setup
 
 POC repo of examples needed to setup an Stripe Card Reader
