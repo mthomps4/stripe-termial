@@ -1,13 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe LocationsController, type: :request do
-  describe "GET /api/v1/locations" do
+  let(:user) { create(:user) }
+  let(:auth_headers) { { 'Authorization' => "Bearer #{generate_jwt_token_for(user)}" } }
+
+  before do
+    allow(LocationService).to receive(:create_location).and_return(
+      OpenStruct.new(id: 'loc_test123')
+    )
+  end
+
+  describe "GET /api/locations" do
     before do
       create_list(:location, 3)
     end
 
     it "returns a list of locations" do
-      get "/api/v1/locations"
+      get "/api/locations"
 
       expect(response).to have_http_status(:ok)
       expect(json_response["locations"].count).to eq(3)
@@ -15,9 +24,9 @@ RSpec.describe LocationsController, type: :request do
     end
 
     it "supports pagination" do
-      create_list(:location, 10)
+      create_list(:location, 10)  # Create additional locations
 
-      get "/api/v1/locations", params: { per_page: 5, page: 2 }
+      get "/api/locations", params: { per_page: 5, page: 2 }
 
       expect(response).to have_http_status(:ok)
       expect(json_response["locations"].count).to eq(5)
@@ -25,7 +34,7 @@ RSpec.describe LocationsController, type: :request do
     end
   end
 
-  describe "POST /api/v1/locations" do
+  describe "POST /api/locations" do
     let(:valid_attributes) do
       {
         location: {
@@ -40,12 +49,11 @@ RSpec.describe LocationsController, type: :request do
     end
 
     context "when the request is valid" do
-      before do
-        # No need to explicitly mock here since the global mock is in place
-        post "/api/v1/locations", params: valid_attributes
-      end
-
       it "creates a location" do
+        post "/api/locations",
+             params: valid_attributes,
+             headers: auth_headers
+
         expect(response).to have_http_status(:created)
         expect(json_response["name"]).to eq("Test Store")
         expect(json_response["stripe_id"]).to match(/loc_test/)
@@ -53,12 +61,20 @@ RSpec.describe LocationsController, type: :request do
     end
 
     context "when the request is invalid" do
-      before do
-        post "/api/v1/locations", params: { location: { name: "" } }
-      end
-
       it "returns status code 422" do
+        post "/api/locations",
+             params: { location: { name: "" } },
+             headers: auth_headers
+
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context "when not authenticated" do
+      it "returns status code 401" do
+        post "/api/locations", params: valid_attributes
+
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
