@@ -1,6 +1,6 @@
-![Sweet Cuts Logo](./sweet_cuts.png)
-
 # Stripe M2 Reader Setup
+
+![Sweet Cuts Logo](./sweet_cuts.png)
 
 POC repo of examples needed to setup an Stripe Card Reader
 In my use we are using the BLUETOOTH M2 READER.
