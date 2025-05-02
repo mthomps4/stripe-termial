@@ -1,20 +1,17 @@
 class LocationService
   def self.create_location(location)
-    # Build address hash with proper handling of nil values
-    address = {
-      line1: location.address_line1,
-      city: location.city,
-      state: location.state,
-      postal_code: location.postal_code,
-      country: location.country
-    }
-    
-    # Only add line2 if it's not nil
-    address[:line2] = location.address_line2 if location.address_line2.present?
-    
+    # In a real implementation, this would call Stripe API
+    # This is just a placeholder for the actual implementation
     Stripe::Terminal::Location.create({
       display_name: location.name,
-      address: address
+      address: {
+        line1: location.address_line1,
+        line2: location.address_line2,
+        city: location.city,
+        state: location.state,
+        postal_code: location.postal_code,
+        country: location.country
+      }
     })
   end
 

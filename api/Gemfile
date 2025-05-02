@@ -45,6 +45,11 @@ gem 'rack-cors'
 gem "rswag-api"
 gem "rswag-ui"
 
+# Authentication
+gem 'devise'
+gem 'devise-jwt'
+gem 'jsonapi-serializer'  # Helps with JSON serialization
+
 group :development, :test do
   gem "dotenv-rails"
   gem "pry"

@@ -14,6 +14,10 @@ require 'shoulda/matchers'
 # run as spec files by default.
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
+# Load environment variables for testing
+require 'dotenv'
+Dotenv.load('.env.test')
+
 # Configure RSpec
 RSpec.configure do |config|
   # Factory Bot setup
@@ -44,6 +48,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  # Include Devise test helpers for controller specs
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end
 
 # Move this configuration after RSpec.configure

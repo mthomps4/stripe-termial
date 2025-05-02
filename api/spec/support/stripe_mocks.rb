@@ -36,3 +36,23 @@ RSpec.configure do |config|
     mock_stripe_terminal_location_update
   end
 end
+
+module StripeMocks
+  def mock_stripe_terminal_location
+    Stripe::Terminal::Location.new(
+      id: 'loc_123456',
+      display_name: 'Test Location',
+      address: {
+        line1: '123 Main St',
+        city: 'Testville',
+        state: 'TS',
+        postal_code: '12345',
+        country: 'US'
+      }
+    )
+  end
+end
+
+RSpec.configure do |config|
+  config.include StripeMocks
+end
