@@ -11,14 +11,12 @@ API Only to showcase full E2E concepts
 
 ## Postman
 
-... TODO
+Download the full collection [HERE](docs/postman).
+If new API Endpoints are added please re-export the collection here.
+[docs/postman](./docs/postman/)
 
-## NOTES/TODO
+## OpenAPI / Swagger
 
-WIP:
-
-- See Postman collection [HERE](docs/postman)
-  - Import this Collection via JSON
 - See Swagger/Open API docs by running the following:
   - `todo`
 
@@ -26,13 +24,16 @@ WIP:
 
 - API: Create endpoint /api/locations for creating/listing locations
 - API: Create endpoint /api/locations/:id for getting/updating/deleting locations
+
 - API: Create endpoint /api/terminal/connection_token for generating secure connection tokens
 - API: Create endpoint /api/terminal/readers/register for registering new readers with location
 - API: Create endpoint /api/terminal/readers for listing readers by location
 - API: Create endpoint /api/terminal/readers/:id for getting/updating reader details
+
 - API: Create endpoint /api/payment_intents for creating payment intents
 - API: Create endpoint /api/payment_intents/:id for retrieving payment intent status
 - API: Create endpoint /api/payment_intents/:id/capture for capturing uncaptured payments
+
 - API: Create endpoint /api/refunds for processing refunds
 - API: Create endpoint /api/transactions for listing transaction history
 - API: Create endpoint /api/webhooks/stripe for handling Stripe webhook events
