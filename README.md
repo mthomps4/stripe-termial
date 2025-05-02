@@ -15,7 +15,7 @@ In my use we are using the BLUETOOTH M2 READER.
 
 ## Learning Goals
 
-"What if ___ Fails with the M2 Reader?!"
+"What if \_\_\_ Fails with the M2 Reader?!"
 Document all the edge cases with Stripe Card Readers and Terminal Setup.
 Stand alone Server for the fuller Enterprise Example.
 Full E2E example w/ Connected Accounts and fund flows.
@@ -88,3 +88,28 @@ See Readmes for a better breakdown:
 - [API README](./api/README.md)
 - [WEB README](./web/README.md)
 - [MOBILE README](./mobile/README.md)
+
+## Development Setup with Just
+
+This project uses [Just](https://github.com/casey/just), a handy command runner alternative to Make. To get started:
+
+1. Install Just:
+
+   ```bash
+   # macOS
+   brew install just
+
+   # Linux
+   curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash
+   ```
+
+2. Common Just commands:
+   - `just setup` - Install dependencies for all projects
+   - `just start` - Start all development servers (API & Web)
+   - `just start-api` - Start just the API server
+   - `just start-web` - Start just the web server
+   - `just test` - Run tests across all projects
+   - `just clean` - Clean all build artifacts
+   - `just update` - Update all dependencies
+
+View all available commands by running `just` or `just --list` in the project root.
