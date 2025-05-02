@@ -25,10 +25,10 @@ If new API Endpoints are added please re-export the collection here.
 - API: Create endpoint /api/locations for creating/listing locations
 - API: Create endpoint /api/locations/:id for getting/updating/deleting locations
 
-- API: Create endpoint /api/terminal/connection_token for generating secure connection tokens
 - API: Create endpoint /api/terminal/readers/register for registering new readers with location
 - API: Create endpoint /api/terminal/readers for listing readers by location
 - API: Create endpoint /api/terminal/readers/:id for getting/updating reader details
+- API: Create endpoint /api/terminal/connection_token for generating secure connection tokens
 
 - API: Create endpoint /api/payment_intents for creating payment intents
 - API: Create endpoint /api/payment_intents/:id for retrieving payment intent status
