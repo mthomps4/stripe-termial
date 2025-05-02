@@ -21,13 +21,44 @@ RSpec.configure do |config|
       },
       servers: [
         {
-          url: 'http://localhost:3000',
+          url: 'http://localhost:4000',
           description: 'Development server'
         }
       ],
       components: {
         schemas: {
-          # Add your schema definitions here
+          # Define the Location schema
+          Location: {
+            type: :object,
+            properties: {
+              id: { type: :integer },
+              name: { type: :string },
+              stripe_id: { type: :string },
+              address_line1: { type: :string },
+              address_line2: { type: :string, nullable: true },
+              city: { type: :string },
+              state: { type: :string },
+              postal_code: { type: :string },
+              country: { type: :string },
+              created_at: { type: :string, format: :datetime },
+              updated_at: { type: :string, format: :datetime }
+            },
+            required: [ 'id', 'name', 'stripe_id', 'address_line1', 'city', 'state', 'postal_code', 'country' ]
+          },
+          # Define the LocationInput schema (used for creating/updating)
+          LocationInput: {
+            type: :object,
+            properties: {
+              name: { type: :string },
+              address_line1: { type: :string },
+              address_line2: { type: :string, nullable: true },
+              city: { type: :string },
+              state: { type: :string },
+              postal_code: { type: :string },
+              country: { type: :string }
+            },
+            required: [ 'name', 'address_line1', 'city', 'state', 'postal_code', 'country' ]
+          }
         }
       },
       paths: {}

@@ -11,14 +11,18 @@ API Only to showcase full E2E concepts
 
 ## Postman
 
-Download the full collection [HERE](docs/postman).
-If new API Endpoints are added please re-export the collection here.
-[docs/postman](./docs/postman/)
+... TODO
 
-## OpenAPI / Swagger
+## Swagger/Open API Docs
 
-- See Swagger/Open API docs by running the following:
-  - `todo`
+To update the API documentation when making controller changes:
+
+1. Add/update RSpec request specs with new examples in `spec/requests/api` directory
+2. Run the test suite: `bundle exec rspec`
+3. Generate updated Swagger docs: `bundle exec rake rswag:specs:swaggerize`
+4. View docs locally at: `http://localhost:4000/api-docs`
+
+The OpenAPI/Swagger documentation is automatically generated from the RSpec tests.
 
 ### API Components (Rails API)
 
