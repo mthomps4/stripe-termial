@@ -11,7 +11,9 @@ API Only to showcase full E2E concepts
 
 ## Postman
 
-... TODO
+Download the full collection [HERE](docs/postman).
+If new API Endpoints are added please re-export the collection here.
+[docs/postman](./docs/postman/)
 
 ## Swagger/Open API Docs
 
@@ -38,10 +40,8 @@ The OpenAPI/Swagger documentation is automatically generated from the RSpec test
 - API: Create endpoint /api/payment_intents/:id for retrieving payment intent status
 - API: Create endpoint /api/payment_intents/:id/capture for capturing uncaptured payments
 
-- API: Create endpoint /api/refunds for processing refunds
 - API: Create endpoint /api/transactions for listing transaction history
 - API: Create endpoint /api/webhooks/stripe for handling Stripe webhook events
-- API: Create endpoint /api/logs for storing client-side logs and events
 
 ### Stripe Dashboard Setup
 
@@ -50,7 +50,5 @@ The OpenAPI/Swagger documentation is automatically generated from the RSpec test
 - STRIPE: Set up location capabilities
 - STRIPE: Configure reader limits and settings
 - STRIPE: Create test mode Terminal readers (for development)
-- STRIPE: Configure reporting and notification preferences
-- STRIPE: Set up team member access and permissions
 - STRIPE: Configure accepted payment methods
 - STRIPE: Set up tax and currency settings

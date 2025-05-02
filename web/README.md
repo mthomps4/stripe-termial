@@ -16,3 +16,16 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Admins
+
+- Manage Users
+- Manage Products/Prices
+- Manage Readers
+- Stripe Dashboards
+
+## Connected Account Users
+
+- Connect Onboarding
+- See Readers Registered
+- Stripe Dashboards
