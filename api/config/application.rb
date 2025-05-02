@@ -24,9 +24,8 @@ module Api
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
+    # Only allow JSON for API requests (except for home page and API docs)
+    config.middleware.use Rack::Deflater
     config.api_only = true
   end
 end
