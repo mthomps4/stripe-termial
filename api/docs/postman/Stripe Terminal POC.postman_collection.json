@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "1c2e02f3-e04d-41f5-823c-19d6532cc026",
+		"name": "Stripe Terminal POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5269406"
+	},
+	"item": [
+		{
+			"name": "Locations",
+			"item": [
+				{
+					"name": "Create Location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "location[name]",
+									"value": "HQ",
+									"type": "text"
+								},
+								{
+									"key": "location[address_line1]",
+									"value": "1272 Valencia Street",
+									"type": "text"
+								},
+								{
+									"key": "location[address_line2]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "location[city]",
+									"value": "San Francisco",
+									"type": "text"
+								},
+								{
+									"key": "location[state]",
+									"value": "CA",
+									"type": "text"
+								},
+								{
+									"key": "location[postal_code]",
+									"value": "94110",
+									"type": "text"
+								},
+								{
+									"key": "location[country]",
+									"value": "US",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Location",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "location[name]",
+									"value": "Echobind HQ",
+									"type": "text"
+								},
+								{
+									"key": "location[address_line1]",
+									"value": "1272 Valencia Street",
+									"type": "text"
+								},
+								{
+									"key": "location[address_line2]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "location[city]",
+									"value": "San Francisco",
+									"type": "text"
+								},
+								{
+									"key": "location[state]",
+									"value": "CA",
+									"type": "text"
+								},
+								{
+									"key": "location[postal_code]",
+									"value": "94110",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/locations/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate Locations ",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/locations?q[address_line1_cont]=Val&page=1&per_page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							],
+							"query": [
+								{
+									"key": "q[address_line1_cont]",
+									"value": "Val"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "1"
+								},
+								{
+									"key": "q[city_cont]",
+									"value": "Fran",
+									"disabled": true
+								},
+								{
+									"key": "q[other_ransack_query_param]",
+									"value": "Fran",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

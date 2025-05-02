@@ -17,7 +17,8 @@ API Only to showcase full E2E concepts
 
 WIP:
 
-- See Postman Collection HERE (docs/postman)
+- See Postman collection [HERE](docs/postman)
+  - Import this Collection via JSON
 - See Swagger/Open API docs by running the following:
   - `todo`
 
