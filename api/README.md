@@ -23,20 +23,6 @@ To update the API documentation when making controller changes:
 4. View docs locally at: `http://localhost:4000/api-docs`
 
 The OpenAPI/Swagger documentation is automatically generated from the RSpec tests.
-The Swagger specs are located in `spec/requests/api` and follow this structure:
-
-- `spec/requests/api/locations_spec.rb` - Location API endpoints
-- `spec/requests/api/readers_spec.rb` - Terminal reader endpoints
-- `spec/requests/api/payment_intents_spec.rb` - Payment intent endpoints
-- `spec/requests/api/refunds_spec.rb` - Refund endpoints
-- `spec/requests/api/transactions_spec.rb` - Transaction history endpoints
-
-Follow these patterns in your controller specs:
-
-## OpenAPI / Swagger
-
-- See Swagger/Open API docs by running the following:
-  - `todo`
 
 ### API Components (Rails API)
 
