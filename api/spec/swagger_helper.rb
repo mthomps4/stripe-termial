@@ -15,19 +15,13 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'Stripe Terminal API',
+        title: 'API V1',
         version: 'v1',
-        description: 'API for Stripe Terminal integration'
+        description: 'API Documentation for Location Management System'
       },
-      servers: [
-        {
-          url: 'http://localhost:4000',
-          description: 'Development server'
-        }
-      ],
       components: {
         schemas: {
-          # Define the Location schema
+          # Location schemas
           Location: {
             type: :object,
             properties: {
@@ -45,7 +39,6 @@ RSpec.configure do |config|
             },
             required: [ 'id', 'name', 'stripe_id', 'address_line1', 'city', 'state', 'postal_code', 'country' ]
           },
-          # Define the LocationInput schema (used for creating/updating)
           LocationInput: {
             type: :object,
             properties: {
@@ -58,10 +51,77 @@ RSpec.configure do |config|
               country: { type: :string }
             },
             required: [ 'name', 'address_line1', 'city', 'state', 'postal_code', 'country' ]
+          },
+          # User schemas
+          User: {
+            type: :object,
+            properties: {
+              email: { type: :string },
+              created_at: { type: :string, format: :datetime },
+              updated_at: { type: :string, format: :datetime }
+            }
+          },
+          UserInput: {
+            type: :object,
+            properties: {
+              email: { type: :string },
+              password: { type: :string },
+              password_confirmation: { type: :string }
+            },
+            required: [ 'email', 'password', 'password_confirmation' ]
+          },
+          # Response schemas
+          Error: {
+            type: :object,
+            properties: {
+              error: { type: :string },
+              status: { type: :integer }
+            }
+          },
+          SuccessResponse: {
+            type: :object,
+            properties: {
+              status: {
+                type: :object,
+                properties: {
+                  code: { type: :integer },
+                  message: { type: :string }
+                }
+              },
+              data: { type: :object }
+            }
+          }
+        },
+        securitySchemes: {
+          Bearer: {
+            description: "JWT token authentication",
+            type: :http,
+            scheme: :bearer,
+            bearerFormat: 'JWT'
           }
         }
       },
-      paths: {}
+      servers: [
+        {
+          url: 'http://{defaultHost}',
+          variables: {
+            defaultHost: {
+              default: 'localhost:4000'
+            }
+          }
+        }
+      ],
+      # Tags for API grouping
+      tags: [
+        {
+          name: 'Authentication',
+          description: 'User authentication endpoints'
+        },
+        {
+          name: 'Locations',
+          description: 'Location management endpoints'
+        }
+      ]
     }
   }
 
