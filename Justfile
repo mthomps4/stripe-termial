@@ -70,4 +70,4 @@ update:
     @echo "Updating API dependencies..."
     cd api && bundle update
     @echo "Updating Web dependencies..."
-    cd web && npm update 
+    cd web && npm update

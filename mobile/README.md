@@ -14,7 +14,10 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    1. update the "owner" to your own Expo Account
    2. remove the project ID for development to allow EAS to create new under your account
 
-3. Start the app
+3. Update `eas.json`
+   1. under development `API_URL` update to your NGROK URL
+
+4. Start the app
 
    ```bash
    npx expo start
@@ -50,6 +53,7 @@ This command will move the starter code to the **app-example** directory and cre
 TODO
 
 ## Notes BUILD_ENV in scripts
+
 TODO
 
 ## Rough Outline Notes
