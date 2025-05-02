@@ -13,7 +13,13 @@ API Only to showcase full E2E concepts
 
 ... TODO
 
-## NOTES/TODO (WIP)
+## NOTES/TODO
+
+WIP:
+
+- See Postman Collection HERE (docs/postman)
+- See Swagger/Open API docs by running the following:
+  - `todo`
 
 ### API Components (Rails API)
 
