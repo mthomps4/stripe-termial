@@ -178,6 +178,138 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Readers",
+			"item": [
+				{
+					"name": "Paginate Readers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/readers?q[label_cont]=Val&page=1&per_page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"readers"
+							],
+							"query": [
+								{
+									"key": "q[label_cont]",
+									"value": "Val"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Reader",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "reader[label]",
+									"value": "Matt's Reader",
+									"type": "text"
+								},
+								{
+									"key": "reader[serial_number]",
+									"value": "1234",
+									"description": "From Stripe",
+									"type": "text"
+								},
+								{
+									"key": "reader[location_id]",
+									"value": "2",
+									"description": "DB LOCATION ID",
+									"type": "text"
+								},
+								{
+									"key": "reader[stripe_id]",
+									"value": "1234",
+									"description": "From Stripe",
+									"type": "text"
+								},
+								{
+									"key": "reader[reader_type]",
+									"value": "M2",
+									"description": "From Stripe",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/readers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"readers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Reader",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "reader[label]",
+									"value": "Matt's Reader",
+									"type": "text"
+								},
+								{
+									"key": "reader[location_id]",
+									"value": "1",
+									"description": "Database Id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/readers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"readers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
