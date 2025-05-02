@@ -1,0 +1,77 @@
+---
+openapi: 3.0.1
+info:
+  title: Stripe Terminal API
+  version: v1
+  description: API for Stripe Terminal integration
+servers:
+- url: http://localhost:3000
+  description: Development server
+components:
+  schemas: {}
+paths:
+  "/api/v1/locations":
+    get:
+      summary: List locations
+      tags:
+      - Locations
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: locations found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locations:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/Location"
+                  meta:
+                    type: object
+                    properties:
+                      total_pages:
+                        type: integer
+                      total_count:
+                        type: integer
+                      current_page:
+                        type: integer
+                      per_page:
+                        type: integer
+                      next_page:
+                        type: integer
+                        nullable: true
+                      prev_page:
+                        type: integer
+                        nullable: true
+    post:
+      summary: Creates a location
+      tags:
+      - Locations
+      parameters: []
+      responses:
+        '201':
+          description: location created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                location:
+                  "$ref": "#/components/schemas/LocationInput"
+              required:
+              - location

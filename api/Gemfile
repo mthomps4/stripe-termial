@@ -41,6 +41,10 @@ gem "kaminari"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+# API Documentation with Swagger/OpenAPI
+gem "rswag-api"
+gem "rswag-ui"
+
 group :development, :test do
   gem "dotenv-rails"
   gem "pry"
@@ -52,4 +56,22 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Swagger spec generation for testing
+  gem "rswag-specs"
+
+  # Add RSpec for Rails
+  gem "rspec-rails"
+
+  # Optional but useful for testing
+  gem "factory_bot_rails"
+  gem "faker"
+end
+
+group :test do
+  # Remove any minitest gems if they exist
+  # Add any additional RSpec-related test gems here
+  gem "shoulda-matchers"
+  gem "database_cleaner-active_record"
+  gem "webmock"
 end
