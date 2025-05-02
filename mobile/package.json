@@ -4,10 +4,17 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
+    "android": "BUILD_ENV=development expo start --android",
+    "ios": "BUILD_ENV=development expo start --ios",
+    "dev": "BUILD_ENV=development expo start --dev-client",
+    "prebuild": "expo prebuild",
+    "build:dev": "eas build --profile development",
+    "build:preview": "eas build --profile preview",
+    "build:staging": "eas build --profile staging",
+    "build:production": "eas build --profile production",
+    "submit:staging": "BUILD_ENV=staging npx eas submit --profile staging",
+    "submit:production": "BUILD_ENV=production npx eas submit --profile production",
+    "test": "jest --watchAll",
     "lint": "expo lint"
   },
   "dependencies": {

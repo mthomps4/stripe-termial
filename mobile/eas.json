@@ -1,0 +1,66 @@
+{
+  "cli": {
+    "version": ">= 16.4.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "base": {
+      "node": "20.11.0"
+    },
+    "development": {
+      "extends": "base",
+      "environment": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+        "BUILD_ENV": "development",
+        "API_URL": "https://{your_ngrok_url}.app"
+      }
+    },
+    "staging": {
+      "extends": "base",
+      "environment": "production",
+      "distribution": "internal",
+      "ios": {
+        "simulator": false
+      },
+      "env": {
+        "BUILD_ENV": "staging",
+        "API_URL": "https://fly-staging.com/api/v1"
+      }
+    },
+    "production": {
+      "extends": "base",
+      "environment": "production",
+      "autoIncrement": true,
+      "ios": {
+        "simulator": false
+      },
+      "env": {
+        "BUILD_ENV": "production",
+        "API_URL": "https://fly-production.com/api/v1"
+      }
+    }
+  },
+  "submit": {
+    "staging": {
+      "ios": {
+        "bundleIdentifier": "com.staging.mt-sweet-cuts-pos.app"
+      },
+      "android": {
+        "package": "com.staging.mt-sweet-cuts-pos.app"
+      }
+    },
+    "production": {
+      "ios": {
+        "bundleIdentifier": "com.mt-sweet-cuts-pos.app"
+      },
+      "android": {
+        "package": "com.mt-sweet-cuts-pos.app"
+      }
+    }
+  }
+}
