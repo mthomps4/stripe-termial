@@ -64,6 +64,8 @@ Mobile - List Products for Cart Management
 
 ### Payment Flow
 
+<https://docs.stripe.com/terminal/features/connect#direct>
+
 - MOBILE: Displays product/cart interface with checkout option
 - MOBILE: Creates payment intent via call to /api/v1/payment_intents with amount and currency
 - API: Creates payment intent via stripe.paymentIntents.create with appropriate parameters
