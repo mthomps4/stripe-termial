@@ -5,6 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
   skip_before_action :authenticate_user!
 
   def create
+    binding.pry
     build_resource(sign_up_params)
 
     resource.save
@@ -43,7 +44,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, merchant_attributes: [:first_name, :last_name])
+    params.require(:user).permit(:email, :password, :password_confirmation, merchant_attributes: [ :first_name, :last_name ])
   end
 
   # Helper method to generate JWT token
