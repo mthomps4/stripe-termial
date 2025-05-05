@@ -5,7 +5,6 @@ class RegistrationsController < Devise::RegistrationsController
   skip_before_action :authenticate_user!
 
   def create
-    binding.pry
     build_resource(sign_up_params)
 
     resource.save

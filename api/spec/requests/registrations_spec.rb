@@ -19,9 +19,16 @@ RSpec.describe 'Registrations API', type: :request do
             properties: {
               email: { type: :string },
               password: { type: :string },
-              password_confirmation: { type: :string }
+              password_confirmation: { type: :string },
+              merchant_attributes: {
+                type: :object,
+                properties: {
+                  first_name: { type: :string },
+                  last_name: { type: :string }
+                }
+              }
             },
-            required: [ 'email', 'password', 'password_confirmation' ]
+            required: [ 'email', 'password', 'password_confirmation', 'merchant_attributes' ]
           }
         },
         required: [ 'user' ]
@@ -33,7 +40,11 @@ RSpec.describe 'Registrations API', type: :request do
             user: {
               email: 'newuser@example.com',
               password: 'password123',
-              password_confirmation: 'password123'
+              password_confirmation: 'password123',
+              merchant_attributes: {
+                first_name: 'John',
+                last_name: 'Doe'
+              }
             }
           }
         end

@@ -88,10 +88,18 @@ components:
           type: string
         password_confirmation:
           type: string
+        merchant_attributes:
+          type: object
+          properties:
+            first_name:
+              type: string
+            last_name:
+              type: string
       required:
       - email
       - password
       - password_confirmation
+      - merchant_attributes
     Error:
       type: object
       properties:
@@ -228,10 +236,18 @@ paths:
                       type: string
                     password_confirmation:
                       type: string
+                    merchant_attributes:
+                      type: object
+                      properties:
+                        first_name:
+                          type: string
+                        last_name:
+                          type: string
                   required:
                   - email
                   - password
                   - password_confirmation
+                  - merchant_attributes
               required:
               - user
   "/api/login":

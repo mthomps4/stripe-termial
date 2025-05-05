@@ -6,7 +6,11 @@ RSpec.describe 'Sessions API', type: :request do
     @user = User.create!(
       email: 'test@example.com',
       password: 'password123',
-      password_confirmation: 'password123'
+      password_confirmation: 'password123',
+      merchant_attributes: {
+        first_name: 'John',
+        last_name: 'Doe'
+      }
     )
   end
 
@@ -49,6 +53,8 @@ RSpec.describe 'Sessions API', type: :request do
           data = JSON.parse(response.body)
           expect(data['token']).to be_present
           expect(data['user']['email']).to eq('test@example.com')
+          expect(data['user']['first_name']).to eq('John')
+          expect(data['user']['last_name']).to eq('Doe')
           expect(response.headers['Authorization']).to be_present
         end
       end
