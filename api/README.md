@@ -9,6 +9,17 @@ API Only to showcase full E2E concepts
 - run `./bin/setup`
 - `./bin/dev`
 
+## Users
+
+### Admin
+
+There's a seeded admin - see `seeds.rb`
+
+### Merchants
+
+Using the WebApp follow the "Start Your Journey" signup flow.
+This will also walk you through the OnBoarding with Stripe
+
 ## Postman
 
 Download the full collection [HERE](docs/postman).
@@ -20,8 +31,8 @@ If new API Endpoints are added please re-export the collection here.
 To update the API documentation when making controller changes:
 
 1. Add/update RSpec request specs with new examples in `spec/requests/api` directory
-2. Run the test suite: `bundle exec rspec`
-3. Generate updated Swagger docs: `bundle exec rake rswag:specs:swaggerize`
+2. Run the test suite: `./bin/rspec`
+3. Generate updated Swagger docs: `./bin/rake rswag:specs:swaggerize`
 4. View docs locally at: `http://localhost:4000/api-docs`
 
 The OpenAPI/Swagger documentation is automatically generated from the RSpec tests.

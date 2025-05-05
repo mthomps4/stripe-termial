@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
+  render_views
+
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
@@ -15,19 +17,23 @@ RSpec.describe SessionsController, type: :controller do
         post :create, params: {
           user: {
             email: user.email,
-            password: 'password123'
+            password: 'password123',
+            password_confirmation: 'password123',
+            merchant_attributes: {
+              first_name: 'John',
+              last_name: 'Doe'
+            }
           }
         }, format: :json
       end
 
       it 'returns success response' do
         expect(response).to have_http_status(:ok)
-        expect(JSON.parse(response.body)['status']['code']).to eq(200)
-        expect(JSON.parse(response.body)['status']['message']).to eq('Logged in successfully.')
+        expect(JSON.parse(response.body)['token']).to be_present
       end
 
       it 'returns user data' do
-        expect(JSON.parse(response.body)['data']).to include('email' => user.email)
+        expect(JSON.parse(response.body)['user']['email']).to eq(user.email)
       end
     end
 

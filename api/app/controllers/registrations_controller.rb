@@ -19,10 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
         # Set the JWT token in response headers
         response.headers["Authorization"] = "Bearer #{token}"
 
-        render json: {
-          status: { code: 200, message: "Signed up successfully." },
-          data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
-        }, status: :ok
+        render "api/v1/users/session", locals: { token: token, user: resource }, status: :ok
       else
         # Handle inactive account (e.g., unconfirmed email)
         render json: {
@@ -46,7 +43,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, merchant_attributes: [:first_name, :last_name])
   end
 
   # Helper method to generate JWT token

@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe RegistrationsController, type: :controller do
+  render_views
+
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
   describe 'POST #create' do
     context 'with valid parameters' do
-      let(:valid_attributes) { { email: 'newuser@example.com', password: 'password123', password_confirmation: 'password123' } }
+      let(:valid_attributes) { { email: 'newuser@example.com', password: 'password123', password_confirmation: 'password123', merchant_attributes: { first_name: 'John', last_name: 'Doe' } } }
 
       it 'creates a new user and returns JWT token' do
         expect {
@@ -16,8 +18,10 @@ RSpec.describe RegistrationsController, type: :controller do
 
         expect(response).to have_http_status(:ok)
         expect(response.headers['Authorization']).to be_present
-        expect(JSON.parse(response.body)['status']['message']).to eq('Signed up successfully.')
-        expect(JSON.parse(response.body)['data']['email']).to eq('newuser@example.com')
+        expect(JSON.parse(response.body)['token']).to be_present
+        expect(JSON.parse(response.body)['user']['email']).to eq('newuser@example.com')
+        expect(JSON.parse(response.body)['user']['first_name']).to eq('John')
+        expect(JSON.parse(response.body)['user']['last_name']).to eq('Doe')
       end
     end
 

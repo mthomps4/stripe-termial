@@ -11,4 +11,15 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_one :admin, dependent: :destroy
+  has_one :merchant, dependent: :destroy
+
+  accepts_nested_attributes_for :admin, :merchant
+
+  def is_admin?
+    admin.present?
+  end
+
+  def is_merchant?
+    merchant.present?
+  end
 end

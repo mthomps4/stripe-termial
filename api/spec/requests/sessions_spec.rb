@@ -47,9 +47,8 @@ RSpec.describe 'Sessions API', type: :request do
 
         run_test! do |response|
           data = JSON.parse(response.body)
-          expect(data['status']['code']).to eq(200)
-          expect(data['status']['message']).to eq('Logged in successfully.')
-          expect(data['data']).to include('email' => 'test@example.com')
+          expect(data['token']).to be_present
+          expect(data['user']['email']).to eq('test@example.com')
           expect(response.headers['Authorization']).to be_present
         end
       end

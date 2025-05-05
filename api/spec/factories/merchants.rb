@@ -4,6 +4,6 @@ FactoryBot.define do
     last_name { "MyString" }
     stripe_account_id { "MyString" }
     stripe_account_status { "MyString" }
-    user { nil }
+    user { create(:user) }
   end
 end

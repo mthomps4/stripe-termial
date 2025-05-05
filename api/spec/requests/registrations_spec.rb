@@ -5,7 +5,7 @@ RSpec.describe 'Registrations API', type: :request do
   before(:each) do
     User.where(email: 'newuser@example.com').destroy_all
   end
-  
+
   path '/api/signup' do
     post 'Creates a user account' do
       tags 'Authentication'
@@ -40,8 +40,7 @@ RSpec.describe 'Registrations API', type: :request do
 
         run_test! do |response|
           data = JSON.parse(response.body)
-          expect(data['status']['message']).to eq('Signed up successfully.')
-          expect(data['data']['email']).to eq('newuser@example.com')
+          expect(data['user']['email']).to eq('newuser@example.com')
           expect(response.headers['Authorization']).to be_present
         end
       end
