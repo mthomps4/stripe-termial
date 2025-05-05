@@ -1,22 +1,35 @@
 import { useMutation } from "@tanstack/react-query";
+import { SIGNUP_URL } from "../constants";
 
 interface SignUpParams {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  user: {
+    email: string;
+    password: string;
+    confirmPassword: string;
+    merchant_attributes: {
+      first_name: string;
+      last_name: string;
+    };
+  };
 }
 
 interface SignUpResponse {
   success: boolean;
   message?: string;
+  user: unknown;
+  token: string;
 }
 
-export const useSignUp = () => {
+export const useSignUp = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: (data: SignUpResponse) => void;
+  onError: (error: Error) => void;
+}) => {
   return useMutation<SignUpResponse, Error, SignUpParams>({
     mutationFn: async (data) => {
-      const response = await fetch("/api/signup", {
+      const response = await fetch(SIGNUP_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,5 +44,7 @@ export const useSignUp = () => {
 
       return response.json();
     },
+    onSuccess: (data) => onSuccess(data),
+    onError: (error) => onError(error),
   });
 };

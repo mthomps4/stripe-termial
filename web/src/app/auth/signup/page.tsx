@@ -2,12 +2,27 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useSignUp } from "@/app/hooks/UseSignUp";
 
 export default function SignUpPage() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const onSuccess = (data: unknown) => {
+    console.log("Successfully signed up", data);
+  };
+
+  const onError = (error: unknown) => {
+    console.error("Error signing up", error);
+  };
+
+  const { mutate: signUp } = useSignUp({
+    onSuccess,
+    onError,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,8 +30,21 @@ export default function SignUpPage() {
       alert("Passwords do not match");
       return;
     }
-    // TODO: Implement signup logic
-    console.log("Signup attempt with:", { name, email, password });
+
+    const response = await signUp({
+      user: {
+        email,
+        password,
+        confirmPassword,
+        merchant_attributes: {
+          first_name: firstName,
+          last_name: lastName,
+        },
+      },
+    });
+
+    console.log("Signup response:", response);
+    // TODO: DO SOMETHING WITH THE RESPONSE & TOKEN
   };
 
   return (
@@ -40,42 +68,36 @@ export default function SignUpPage() {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label
-                htmlFor="merchant_attributes[first_name]"
-                className="block text-sm font-medium"
-              >
+              <label htmlFor="firstName" className="block text-sm font-medium">
                 First name
               </label>
               <div className="mt-1">
                 <input
-                  id="merchant_attributes[first_name]"
-                  name="merchant_attributes[first_name]"
+                  id="firstName"
+                  name="firstName"
                   type="text"
-                  autoComplete="first_name"
+                  autoComplete="firstName"
                   required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className="block w-full appearance-none rounded-md border border-neutral-300 px-3 py-2 placeholder-neutral-400 shadow-sm focus:border-navy-500 focus:outline-none focus:ring-navy-500 sm:text-sm"
                 />
               </div>
             </div>
 
             <div>
-              <label
-                htmlFor="merchant_attributes[last_name]"
-                className="block text-sm font-medium"
-              >
+              <label htmlFor="lastName" className="block text-sm font-medium">
                 Last name
               </label>
               <div className="mt-1">
                 <input
-                  id="merchant_attributes[last_name]"
-                  name="merchant_attributes[last_name]"
+                  id="lastName"
+                  name="lastName"
                   type="text"
-                  autoComplete="last_name"
+                  autoComplete="lastName"
                   required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="block w-full appearance-none rounded-md border border-neutral-300 px-3 py-2 placeholder-neutral-400 shadow-sm focus:border-navy-500 focus:outline-none focus:ring-navy-500 sm:text-sm"
                 />
               </div>
@@ -119,15 +141,15 @@ export default function SignUpPage() {
 
             <div>
               <label
-                htmlFor="confirm-password"
+                htmlFor="confirmPassword"
                 className="block text-sm font-medium"
               >
                 Confirm password
               </label>
               <div className="mt-1">
                 <input
-                  id="confirm-password"
-                  name="confirm-password"
+                  id="confirmPassword"
+                  name="confirmPassword"
                   type="password"
                   autoComplete="new-password"
                   required
