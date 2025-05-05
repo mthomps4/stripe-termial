@@ -2,16 +2,17 @@ class SessionsController < Devise::SessionsController
   respond_to :json
   skip_before_action :verify_signed_out_user
   skip_before_action :authenticate_user!, only: [ :create ]
+  before_action :authenticate_user!, only: [ :destroy ]
 
   # Override the create method to handle login requests
   def create
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)
-    
+
     # Get the JWT token and set it in the response headers
-    token = request.env['warden-jwt_auth.token']
-    response.headers['Authorization'] = "Bearer #{token}" if token.present?
-    
+    token = request.env["warden-jwt_auth.token"]
+    response.headers["Authorization"] = "Bearer #{token}" if token.present?
+
     render json: {
       status: { code: 200, message: "Logged in successfully." },
       data: UserSerializer.new(resource).serializable_hash[:data][:attributes]

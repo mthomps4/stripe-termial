@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Exit immediately on failure
+set -e
+
+# Always run from the project root directory
+cd "$(dirname "$0")/.."
+
+# Run RSpec with the provided arguments
+exec bundle exec rspec "$@"

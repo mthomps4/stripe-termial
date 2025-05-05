@@ -1,257 +1,116 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col md:flex-row">
+    <main className="min-h-screen bg-neutral-50">
       {/* Hero Section */}
-      <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-primary">
-        <div className="max-w-md mx-auto text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Sweet Cuts Admin
-          </h1>
-          <p className="text-xl mb-8">
-            Management portal for shop owners and barbers. Configure locations,
-            services, and payment settings.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4">
-            <Link
-              href="#manage"
-              className="bg-secondary text-primary hover:bg-secondary-dark px-5 py-2 rounded-md transition-colors font-medium"
-            >
-              Manage Shop
-            </Link>
-            <Link
-              href="#payments"
-              className="bg-white text-primary hover:bg-neutral-100 px-5 py-2 rounded-md transition-colors"
-            >
-              Payment Setup
-            </Link>
+      <div className="pt-24 pb-16 sm:pt-32 sm:pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-6xl font-bold mb-6 text-navy-800">
+              Grow Your Barbering Business
+            </h1>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+              Join our team of professional barbers and take control of your
+              career. Set your own schedule, and build your client base.
+            </p>
+            <div className="flex justify-center space-x-4">
+              <Link
+                href="/auth/signup"
+                className="px-8 py-3 btn-primary rounded-md"
+              >
+                Start Your Journey
+              </Link>
+              <Link href="/#" className="px-8 py-3 btn-secondary rounded-md">
+                See Benefits
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Auth Section */}
-      <div className="md:w-1/2 p-8 md:p-12 flex items-center justify-center bg-neutral-50">
-        <AuthTabs />
-      </div>
-    </div>
-  );
-}
-
-function AuthTabs() {
-  const [activeTab, setActiveTab] = useState("login");
-
-  return (
-    <div className="w-full max-w-md">
-      <div className="flex border-b border-neutral-200 mb-6">
-        <button
-          className={`py-2 px-4 text-center w-1/2 ${
-            activeTab === "login"
-              ? "border-b-2 border-primary text-primary font-medium"
-              : "text-neutral-600"
-          }`}
-          onClick={() => setActiveTab("login")}
-        >
-          Login
-        </button>
-        <button
-          className={`py-2 px-4 text-center w-1/2 ${
-            activeTab === "signup"
-              ? "border-b-2 border-primary text-primary font-medium"
-              : "text-neutral-600"
-          }`}
-          onClick={() => setActiveTab("signup")}
-        >
-          Sign Up
-        </button>
-      </div>
-
-      <div className="bg-white shadow-md rounded-lg p-6">
-        {activeTab === "login" ? <LoginForm /> : <SignupForm />}
-      </div>
-    </div>
-  );
-}
-
-function LoginForm() {
-  return (
-    <form className="space-y-4">
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-neutral-700 mb-1"
-        >
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          className="w-full px-4 py-2 rounded-md border border-neutral-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          placeholder="name@example.com"
-          required
-        />
-      </div>
-      <div>
-        <label
-          htmlFor="password"
-          className="block text-sm font-medium text-neutral-700 mb-1"
-        >
-          Password
-        </label>
-        <input
-          id="password"
-          type="password"
-          className="w-full px-4 py-2 rounded-md border border-neutral-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          placeholder="••••••••"
-          required
-        />
-      </div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
-          <input
-            id="remember"
-            type="checkbox"
-            className="h-4 w-4 text-primary focus:ring-primary border-neutral-300 rounded"
-          />
-          <label
-            htmlFor="remember"
-            className="ml-2 block text-sm text-neutral-700"
-          >
-            Remember me
-          </label>
+      {/* Features Section */}
+      <div className="py-16 bg-neutral-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center p-6">
+              <div className="w-12 h-12 bg-navy-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Flexible Schedule</h3>
+              <p className="">
+                Work when you want - manage your availability with our easy
+                scheduling system
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="w-12 h-12 bg-navy-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Client Management</h3>
+              <p className="">
+                Build and maintain your client base with our professional tools
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="w-12 h-12 bg-navy-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Maximize Earnings</h3>
+              <p className="">
+                Set your own prices and keep more of what you earn
+              </p>
+            </div>
+          </div>
         </div>
-        <a href="#" className="text-sm text-primary hover:underline">
-          Forgot password?
-        </a>
       </div>
-      <button
-        type="submit"
-        className="w-full bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors"
-      >
-        Sign in
-      </button>
-      <p className="text-center text-sm text-neutral-600 mt-4">
-        Shop owners and barbers sign in to manage shop settings and payment
-        accounts
-      </p>
-    </form>
-  );
-}
 
-function SignupForm() {
-  return (
-    <form className="space-y-4">
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-neutral-700 mb-1"
-        >
-          Full Name
-        </label>
-        <input
-          id="name"
-          type="text"
-          className="w-full px-4 py-2 rounded-md border border-neutral-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          placeholder="John Doe"
-          required
-        />
-      </div>
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-neutral-700 mb-1"
-        >
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          className="w-full px-4 py-2 rounded-md border border-neutral-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          placeholder="name@example.com"
-          required
-        />
-      </div>
-      <div>
-        <label
-          htmlFor="role"
-          className="block text-sm font-medium text-neutral-700 mb-1"
-        >
-          Role
-        </label>
-        <select
-          id="role"
-          className="w-full px-4 py-2 rounded-md border border-neutral-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          required
-        >
-          <option value="" disabled selected>
-            Select your role
-          </option>
-          <option value="owner">Shop Owner</option>
-          <option value="barber">Barber</option>
-          <option value="manager">Manager</option>
-        </select>
-      </div>
-      <div>
-        <label
-          htmlFor="password"
-          className="block text-sm font-medium text-neutral-700 mb-1"
-        >
-          Password
-        </label>
-        <input
-          id="password"
-          type="password"
-          className="w-full px-4 py-2 rounded-md border border-neutral-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          placeholder="••••••••"
-          required
-        />
-      </div>
-      <div>
-        <label
-          htmlFor="confirm-password"
-          className="block text-sm font-medium text-neutral-700 mb-1"
-        >
-          Confirm Password
-        </label>
-        <input
-          id="confirm-password"
-          type="password"
-          className="w-full px-4 py-2 rounded-md border border-neutral-300 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-          placeholder="••••••••"
-          required
-        />
-      </div>
-      <div className="flex items-start">
-        <input
-          id="terms"
-          type="checkbox"
-          className="h-4 w-4 text-primary focus:ring-primary border-neutral-300 rounded mt-1"
-          required
-        />
-        <label htmlFor="terms" className="ml-2 block text-sm text-neutral-700">
-          I agree to the{" "}
-          <a href="#" className="text-primary hover:underline">
-            Terms of Service
-          </a>{" "}
-          and{" "}
-          <a href="#" className="text-primary hover:underline">
-            Privacy Policy
-          </a>
-        </label>
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-primary text-white hover:bg-primary-dark px-5 py-2 rounded-md transition-colors"
-      >
-        Create Account
-      </button>
-      <p className="text-center text-sm text-neutral-600 mt-4">
-        Create an admin account to manage your barbershop and connect payment
-        methods
-      </p>
-    </form>
+      {/* Footer */}
+      <footer className="bg-neutral-100 border-t">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center">
+            <p>&copy; 2024 Sweet Cuts. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }

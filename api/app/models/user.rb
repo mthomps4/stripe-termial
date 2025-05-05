@@ -4,9 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include Devise::JWT::RevocationStrategies::JTIMatcher
-  
+
   # Configure devise modules for JWT API - combine all needed modules
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
-end 
+
+  has_one :admin, dependent: :destroy
+end
