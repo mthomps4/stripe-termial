@@ -22,4 +22,12 @@ class User < ApplicationRecord
   def is_merchant?
     merchant.present?
   end
+
+  def first_name
+    admin.first_name || merchant.first_name
+  end
+
+  def last_name
+    admin.last_name || merchant.last_name
+  end
 end

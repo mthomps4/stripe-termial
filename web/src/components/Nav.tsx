@@ -3,6 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCurrentUser } from "../contexts/CurrentUserProvider";
+import { USER_KEY } from "@/constants";
+import { AUTH_TOKEN_KEY } from "@/constants";
 
 export default function Nav() {
   const { user, setUser, setToken } = useCurrentUser();
@@ -10,8 +12,8 @@ export default function Nav() {
   const handleLogout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem("sweet_treats_token");
-    localStorage.removeItem("sweet_treats_user");
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
   };
 
   return (

@@ -7,6 +7,7 @@ import { WithAuth } from "@/components/WithAuth";
 
 export default function StripeOnboarding() {
   const router = useRouter();
+  // withAuth already handles loading state
   const { user } = useCurrentUser();
 
   useEffect(() => {

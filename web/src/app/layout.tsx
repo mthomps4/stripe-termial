@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ClientProviders from "@/components/ClientProviders";
 
 const geistSans = Geist({
@@ -26,14 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClientProviders>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ClientProviders>
           <Nav />
           {children}
-          <ReactQueryDevtools initialIsOpen={false} />
           <footer className="bg-neutral-100 border-t">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               <div className="text-center">
@@ -41,8 +39,8 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
-        </body>
-      </html>
-    </ClientProviders>
+        </ClientProviders>
+      </body>
+    </html>
   );
 }

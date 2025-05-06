@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { getToken, getCurrentUser } from "../utils/utils";
+import { useCurrentUser } from "@/contexts/CurrentUserProvider";
+import { useEffect } from "react";
 
 export const WithAuth = ({
   requiresAdmin,
@@ -11,19 +12,27 @@ export const WithAuth = ({
   children: React.ReactNode;
 }) => {
   const router = useRouter();
+  const { user, token, isLoading } = useCurrentUser();
 
-  const token = getToken();
-  const user = getCurrentUser();
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
 
-  if (!token || !user) {
-    router.push("/auth/login");
-    return;
+    if (!token || !user) {
+      router.push("/auth/login");
+      return;
+    }
+
+    if (requiresAdmin && !user.is_admin) {
+      router.push("/");
+      return;
+    }
+  }, [token, user, router, requiresAdmin, isLoading]);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
 
-  if (requiresAdmin && !user.is_admin) {
-    router.push("/auth/login");
-    return;
-  }
-
-  return children;
+  return <>{children}</>;
 };
