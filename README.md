@@ -69,12 +69,12 @@ Mobile - List Products for Cart Management
 <https://docs.stripe.com/terminal/features/connect#direct>
 
 - MOBILE: Displays product/cart interface with checkout option
-- MOBILE: Creates payment intent via call to /api/v1/payment_intents with amount and currency
+- MOBILE: Creates payment intent via call to /api/payment_intents with amount and currency
 - API: Creates payment intent via stripe.paymentIntents.create with appropriate parameters
 - API: Returns payment intent details and client secret to client
 - MOBILE: Uses Terminal SDK to collect payment method with terminal.collectPaymentMethod()
 - MOBILE: Processes payment with terminal.processPayment() using client secret
-- MOBILE: Makes API call to /api/v1/payment_intents/:id/capture if payment needs separate capture
+- MOBILE: Makes API call to /api/payment_intents/:id/capture if payment needs separate capture
 - API: Captures payment intent if needed
 - API: Returns final payment status to client
 - MOBILE: Shows payment confirmation or error message
