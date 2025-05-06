@@ -38,7 +38,16 @@ export function useLogin({ onError }: { onError: (error: Error) => void }) {
       setToken(data.token);
       localStorage.setItem(AUTH_TOKEN_KEY, data.token);
       localStorage.setItem(USER_KEY, JSON.stringify(data.user));
-      router.push("/");
+
+      // TODO: more route handling here later...
+      if (
+        data.user.is_merchant &&
+        data.user.stripe_connect_account_status !== "active"
+      ) {
+        router.push("/stripe-onboarding");
+      } else {
+        router.push("/");
+      }
     },
     onError: (error) => onError(error),
   });

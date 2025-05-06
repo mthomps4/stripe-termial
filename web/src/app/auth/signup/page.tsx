@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useSignUp } from "@/app/hooks/useSignUp";
-import { USER_KEY } from "@/app/constants";
-import { AUTH_TOKEN_KEY } from "@/app/constants";
-import { SessionResponse } from "@/app/types/signup";
+import { useSignUp } from "@/hooks/useSignUp";
+import { USER_KEY } from "@/constants";
+import { AUTH_TOKEN_KEY } from "@/constants";
+import { SessionResponse } from "@/types/signup";
 import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {

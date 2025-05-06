@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { SIGNUP_URL } from "@/app/constants";
-import { SignUpParams, SessionResponse } from "@/app/types/signup";
+import { SIGNUP_URL } from "@/constants";
+import { SignUpParams, SessionResponse } from "@/types/signup";
 
 export const useSignUp = ({
   onSuccess,

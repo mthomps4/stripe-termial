@@ -16,7 +16,7 @@ export interface SessionResponse {
     email: string;
     first_name: string;
     last_name: string;
-    stripe_customer_id?: string;
+    stripe_connect_account_status?: string;
     stripe_connect_account_id?: string;
     is_merchant?: boolean;
     is_admin?: boolean;

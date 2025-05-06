@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { getToken, getCurrentUser } from "./utils";
+import { getToken, getCurrentUser } from "../utils/utils";
 
-export const useWithAuth = ({
+export const WithAuth = ({
   requiresAdmin,
   children,
 }: {
