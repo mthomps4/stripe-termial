@@ -14,6 +14,7 @@ export default function Nav() {
     setToken(null);
     localStorage.removeItem(AUTH_TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
+    window.location.href = "/";
   };
 
   return (
