@@ -1,278 +1,448 @@
 {
-  "info": {
-    "_postman_id": "1c2e02f3-e04d-41f5-823c-19d6532cc026",
-    "name": "Stripe Terminal POC",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "5269406"
-  },
-  "item": [
-    {
-      "name": "Locations",
-      "item": [
-        {
-          "name": "Create Location",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "location[name]",
-                  "value": "HQ",
-                  "type": "text"
-                },
-                {
-                  "key": "location[address_line1]",
-                  "value": "1272 Valencia Street",
-                  "type": "text"
-                },
-                {
-                  "key": "location[address_line2]",
-                  "value": "",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "location[city]",
-                  "value": "San Francisco",
-                  "type": "text"
-                },
-                {
-                  "key": "location[state]",
-                  "value": "CA",
-                  "type": "text"
-                },
-                {
-                  "key": "location[postal_code]",
-                  "value": "94110",
-                  "type": "text"
-                },
-                {
-                  "key": "location[country]",
-                  "value": "US",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "http://localhost:3000/api/locations",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "v1", "locations"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Location",
-          "request": {
-            "method": "PATCH",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "location[name]",
-                  "value": "Echobind HQ",
-                  "type": "text"
-                },
-                {
-                  "key": "location[address_line1]",
-                  "value": "1272 Valencia Street",
-                  "type": "text"
-                },
-                {
-                  "key": "location[address_line2]",
-                  "value": "",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "location[city]",
-                  "value": "San Francisco",
-                  "type": "text"
-                },
-                {
-                  "key": "location[state]",
-                  "value": "CA",
-                  "type": "text"
-                },
-                {
-                  "key": "location[postal_code]",
-                  "value": "94110",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "http://localhost:3000/api/locations/1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "v1", "locations", "1"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Paginate Locations ",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/api/locations?q[address_line1_cont]=Val&page=1&per_page=1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "v1", "locations"],
-              "query": [
-                {
-                  "key": "q[address_line1_cont]",
-                  "value": "Val"
-                },
-                {
-                  "key": "page",
-                  "value": "1"
-                },
-                {
-                  "key": "per_page",
-                  "value": "1"
-                },
-                {
-                  "key": "q[city_cont]",
-                  "value": "Fran",
-                  "disabled": true
-                },
-                {
-                  "key": "q[other_ransack_query_param]",
-                  "value": "Fran",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Readers",
-      "item": [
-        {
-          "name": "Paginate Readers",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/api/readers?q[label_cont]=Val&page=1&per_page=1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "v1", "readers"],
-              "query": [
-                {
-                  "key": "q[label_cont]",
-                  "value": "Val"
-                },
-                {
-                  "key": "page",
-                  "value": "1"
-                },
-                {
-                  "key": "per_page",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create Reader",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "reader[label]",
-                  "value": "Matt's Reader",
-                  "type": "text"
-                },
-                {
-                  "key": "reader[serial_number]",
-                  "value": "1234",
-                  "description": "From Stripe",
-                  "type": "text"
-                },
-                {
-                  "key": "reader[location_id]",
-                  "value": "2",
-                  "description": "DB LOCATION ID",
-                  "type": "text"
-                },
-                {
-                  "key": "reader[stripe_id]",
-                  "value": "1234",
-                  "description": "From Stripe",
-                  "type": "text"
-                },
-                {
-                  "key": "reader[reader_type]",
-                  "value": "M2",
-                  "description": "From Stripe",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "http://localhost:3000/api/readers",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "v1", "readers"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Reader",
-          "request": {
-            "method": "PATCH",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "reader[label]",
-                  "value": "Matt's Reader",
-                  "type": "text"
-                },
-                {
-                  "key": "reader[location_id]",
-                  "value": "1",
-                  "description": "Database Id",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "http://localhost:3000/api/readers",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["api", "v1", "readers"]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "1c2e02f3-e04d-41f5-823c-19d6532cc026",
+		"name": "Stripe Terminal POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5269406"
+	},
+	"item": [
+		{
+			"name": "Locations",
+			"item": [
+				{
+					"name": "Create Location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "location[name]",
+									"value": "HQ",
+									"type": "text"
+								},
+								{
+									"key": "location[address_line1]",
+									"value": "1272 Valencia Street",
+									"type": "text"
+								},
+								{
+									"key": "location[address_line2]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "location[city]",
+									"value": "San Francisco",
+									"type": "text"
+								},
+								{
+									"key": "location[state]",
+									"value": "CA",
+									"type": "text"
+								},
+								{
+									"key": "location[postal_code]",
+									"value": "94110",
+									"type": "text"
+								},
+								{
+									"key": "location[country]",
+									"value": "US",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/locations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "location[name]",
+									"value": "Echobind HQ",
+									"type": "text"
+								},
+								{
+									"key": "location[address_line1]",
+									"value": "1272 Valencia Street",
+									"type": "text"
+								},
+								{
+									"key": "location[address_line2]",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "location[city]",
+									"value": "San Francisco",
+									"type": "text"
+								},
+								{
+									"key": "location[state]",
+									"value": "CA",
+									"type": "text"
+								},
+								{
+									"key": "location[postal_code]",
+									"value": "94110",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/locations/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"locations",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paginate Locations ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/locations?q[address_line1_cont]=Val&page=1&per_page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"locations"
+							],
+							"query": [
+								{
+									"key": "q[address_line1_cont]",
+									"value": "Val"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "1"
+								},
+								{
+									"key": "q[city_cont]",
+									"value": "Fran",
+									"disabled": true
+								},
+								{
+									"key": "q[other_ransack_query_param]",
+									"value": "Fran",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Readers",
+			"item": [
+				{
+					"name": "Paginate Readers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/readers?q[label_cont]=Val&page=1&per_page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"readers"
+							],
+							"query": [
+								{
+									"key": "q[label_cont]",
+									"value": "Val"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Reader",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "reader[label]",
+									"value": "Matt's Reader",
+									"type": "text"
+								},
+								{
+									"key": "reader[serial_number]",
+									"value": "1234",
+									"description": "From Stripe",
+									"type": "text"
+								},
+								{
+									"key": "reader[location_id]",
+									"value": "2",
+									"description": "DB LOCATION ID",
+									"type": "text"
+								},
+								{
+									"key": "reader[stripe_id]",
+									"value": "1234",
+									"description": "From Stripe",
+									"type": "text"
+								},
+								{
+									"key": "reader[reader_type]",
+									"value": "M2",
+									"description": "From Stripe",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/readers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"readers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Reader",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "reader[label]",
+									"value": "Matt's Reader",
+									"type": "text"
+								},
+								{
+									"key": "reader[location_id]",
+									"value": "1",
+									"description": "Database Id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/readers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"readers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Paginate Products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user[email]",
+									"value": "admin@asdf.com",
+									"type": "text"
+								},
+								{
+									"key": "user[password]",
+									"value": "asdfasdf",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }

@@ -1,4 +1,7 @@
 class ReadersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_admin!, only: [ :destroy ]
+
   def index
     @q = Reader.ransack(params[:q])
     @readers = @q.result.order(created_at: :desc)

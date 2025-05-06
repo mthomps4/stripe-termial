@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :show ]
   before_action :set_location, only: [ :show, :update, :destroy ]
+  before_action :authenticate_user!, only: [ :index, :show ]
+  before_action :authenticate_admin!, only: [ :create, :update, :destroy ]
 
   def index
     @q = Location.ransack(params[:q])
@@ -28,7 +29,7 @@ class LocationsController < ApplicationController
     begin
       # Create in Stripe first
       stripe_location = LocationService.create_location(location_params)
-      
+
       # Then create locally with the stripe_id
       @location = Location.new(location_params.merge(stripe_id: stripe_location.id))
 

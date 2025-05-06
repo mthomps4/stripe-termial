@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   include ActionController::MimeResponds
   respond_to :json
 
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   # Handle exceptions for API responses
   rescue_from StandardError do |exception|
@@ -20,6 +20,14 @@ class ApplicationController < ActionController::API
 
     render json: {
       error: "You need to sign in or sign up before continuing."
+    }, status: :unauthorized
+  end
+
+  def authenticate_admin!
+    return if current_user&.admin?
+
+    render json: {
+      error: "You need to be an admin to continue."
     }, status: :unauthorized
   end
 end

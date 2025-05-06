@@ -1,13 +1,13 @@
 class MerchantsController < ApplicationController
-  before_action :authenticate_user!, only: [:create_test_connect_account]
+  before_action :authenticate_user!, only: [ :show, :update ]
+  before_action :authenticate_admin!, only: [ :index, :destroy ]
+
+  # Create happens on the registrations controller
 
   def index
   end
 
   def show
-  end
-
-  def create
   end
 
   def update

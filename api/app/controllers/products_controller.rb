@@ -1,21 +1,23 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, only: [ :index, :show ]
+  before_action :authenticate_admin!, only: [ :create, :update, :destroy ]
 
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(params[:per_page])
-    render :index
+    render "api/products/index", status: :ok
   end
 
   def show
-    render :show
+    render "api/products/show", status: :ok
   end
 
   def create
     @product = Product.new(product_params)
 
     if @product.save
-      render :show, status: :created
+      render "api/products/show", status: :created
     else
       render json: { errors: @product.errors }, status: :unprocessable_entity
     end
@@ -23,7 +25,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      render :show
+      render "api/products/show", status: :ok
     else
       render json: { errors: @product.errors }, status: :unprocessable_entity
     end

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :locations
     resources :readers
     resources :products
-    resources :merchants do
+    resources :merchants, except: [ :create ] do
       post :create_test_connect_account, on: :collection
     end
   end

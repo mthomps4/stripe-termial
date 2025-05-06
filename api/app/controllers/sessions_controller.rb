@@ -1,8 +1,7 @@
 class SessionsController < Devise::SessionsController
   respond_to :json
-  skip_before_action :verify_signed_out_user
-  skip_before_action :authenticate_user!, only: [ :create ]
-  before_action :authenticate_user!, only: [ :destroy ]
+  # Not using full Rails ERB / Web here...
+  # before_action :authenticate_user!, only: [ :destroy ]
 
   # Override the create method to handle login requests
   def create
@@ -21,6 +20,8 @@ class SessionsController < Devise::SessionsController
     # JWT tokens cannot be destroyed server-side with pure JWT
     # We would need to implement a blacklist or use JTI strategy
     # Here we simply return success
+    #
+    # Wiping Local Storage on FE logout
     render json: {
       status: 200,
       message: "Logged out successfully."
