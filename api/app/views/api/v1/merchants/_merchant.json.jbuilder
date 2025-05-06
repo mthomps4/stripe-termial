@@ -3,3 +3,4 @@ json.first_name merchant.first_name
 json.last_name merchant.last_name
 json.stripe_account_id merchant.stripe_account_id
 json.stripe_account_status merchant.stripe_account_status
+json.is_merchant true

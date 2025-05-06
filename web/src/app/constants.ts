@@ -4,3 +4,7 @@ export const API_URL = `${ROOT_API_URL}/api`;
 
 export const SIGNUP_URL = `${API_URL}/signup`;
 export const LOGIN_URL = `${API_URL}/login`;
+
+// Local Storage
+export const AUTH_TOKEN_KEY = "sweet_treats_token";
+export const USER_KEY = "sweet_treats_user";

@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useSignUp } from "@/app/hooks/UseSignUp";
+import { useSignUp } from "@/app/hooks/useSignUp";
+import { USER_KEY } from "@/app/constants";
+import { AUTH_TOKEN_KEY } from "@/app/constants";
+import { SessionResponse } from "@/app/types/signup";
 
 export default function SignUpPage() {
   const [firstName, setFirstName] = useState("");
@@ -10,28 +13,33 @@ export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [hasError, setHasError] = useState(false);
 
-  const onSuccess = (data: unknown) => {
-    console.log("Successfully signed up", data);
+  const onSuccess = (data: SessionResponse) => {
+    localStorage.setItem(AUTH_TOKEN_KEY, data.token);
+    localStorage.setItem(USER_KEY, JSON.stringify(data.user));
   };
 
-  const onError = (error: unknown) => {
+  const onError = (error: Error) => {
     console.error("Error signing up", error);
+    setHasError(true);
   };
 
-  const { mutate: signUp } = useSignUp({
+  const { mutate: signUp, isPending } = useSignUp({
     onSuccess,
     onError,
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setHasError(false);
+
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
 
-    const response = await signUp({
+    signUp({
       user: {
         email,
         password,
@@ -42,9 +50,6 @@ export default function SignUpPage() {
         },
       },
     });
-
-    console.log("Signup response:", response);
-    // TODO: DO SOMETHING WITH THE RESPONSE & TOKEN
   };
 
   return (
@@ -63,6 +68,14 @@ export default function SignUpPage() {
           </Link>
         </p>
       </div>
+
+      {hasError && (
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="bg-red-200 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <p>Error signing up</p>
+          </div>
+        </div>
+      )}
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
@@ -164,8 +177,9 @@ export default function SignUpPage() {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md btn-primary py-2 px-4 text-sm font-medium"
+                disabled={isPending}
               >
-                Get Started!
+                {isPending ? "Signing up..." : "Get Started!"}
               </button>
             </div>
           </form>

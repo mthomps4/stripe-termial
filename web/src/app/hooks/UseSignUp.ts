@@ -1,24 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { SIGNUP_URL } from "../constants";
-
-interface SignUpParams {
-  user: {
-    email: string;
-    password: string;
-    confirmPassword: string;
-    merchant_attributes: {
-      first_name: string;
-      last_name: string;
-    };
-  };
-}
-
-interface SignUpResponse {
-  success: boolean;
-  message?: string;
-  user: unknown;
-  token: string;
-}
+import { SIGNUP_URL } from "@/app/constants";
+import { SignUpParams, SignUpResponse } from "@/app/types/signup";
 
 export const useSignUp = ({
   onSuccess,
