@@ -6,8 +6,10 @@ import { useSignUp } from "@/app/hooks/useSignUp";
 import { USER_KEY } from "@/app/constants";
 import { AUTH_TOKEN_KEY } from "@/app/constants";
 import { SessionResponse } from "@/app/types/signup";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
+  const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,6 +20,8 @@ export default function SignUpPage() {
   const onSuccess = (data: SessionResponse) => {
     localStorage.setItem(AUTH_TOKEN_KEY, data.token);
     localStorage.setItem(USER_KEY, JSON.stringify(data.user));
+
+    router.push("/");
   };
 
   const onError = (error: Error) => {

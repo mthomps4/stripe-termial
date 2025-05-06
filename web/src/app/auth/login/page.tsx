@@ -2,15 +2,24 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useLogin } from "@/app/hooks/useLogin";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const onError = (e: Error) => {
+    console.error("Login failed:", e);
+  };
+
+  const { mutate: login, isPending } = useLogin({
+    onError,
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement login logic
-    console.log("Login attempt with:", { email, password });
+    console.log("handleSubmit", { email, password });
+    login({ user: { email, password } });
   };
 
   return (
@@ -69,7 +78,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
                   id="remember-me"
@@ -90,14 +99,15 @@ export default function LoginPage() {
                   Forgot your password?
                 </a>
               </div>
-            </div>
+            </div> */}
 
             <div>
               <button
                 type="submit"
+                disabled={isPending}
                 className="btn-primary flex w-full justify-center rounded-md py-2 px-4 text-sm font-medium"
               >
-                Sign in
+                {isPending ? "Signing in..." : "Sign in"}
               </button>
             </div>
           </form>
