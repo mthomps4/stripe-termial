@@ -26,8 +26,6 @@ function StripeOnboarding() {
       onSuccess: (data) => {
         const connectAccountId = data.connect_account_id;
 
-        console.log({ data });
-
         localStorage.setItem(
           USER_KEY,
           JSON.stringify({

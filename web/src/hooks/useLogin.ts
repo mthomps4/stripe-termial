@@ -24,8 +24,6 @@ export function useLogin({ onError }: { onError: (error: Error) => void }) {
         body: JSON.stringify(credentials),
       });
 
-      console.log("response", response);
-
       if (!response.ok) {
         throw new Error("Login failed");
       }

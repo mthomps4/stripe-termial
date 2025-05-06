@@ -24,7 +24,6 @@ export const useCreateTestConnectAccount = ({
         throw new Error("Failed to create test connect account");
       }
       const data = await response.json();
-      console.log("MUTATION DATA", { data });
       return data;
     },
     mutationKey: ["createTestConnectAccount", user?.id],
