@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   scope :api do
     resources :locations
     resources :readers
+    resources :products
     resources :merchants do
       post :create_test_connect_account, on: :collection
     end

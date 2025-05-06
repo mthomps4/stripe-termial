@@ -19,7 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
         # Set the JWT token in response headers
         response.headers["Authorization"] = "Bearer #{token}"
 
-        render "api/v1/users/session", locals: { token: token, user: resource }, status: :ok
+        render "api/users/session", locals: { token: token, user: resource }, status: :ok
       else
         # Handle inactive account (e.g., unconfirmed email)
         render json: {

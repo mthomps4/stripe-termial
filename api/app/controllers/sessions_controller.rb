@@ -13,7 +13,7 @@ class SessionsController < Devise::SessionsController
     token = request.env["warden-jwt_auth.token"]
     response.headers["Authorization"] = "Bearer #{token}" if token.present?
 
-    render "api/v1/users/session", locals: { user: resource, token: token }, status: :ok
+    render "api/users/session", locals: { user: resource, token: token }, status: :ok
   end
 
   # Handle logout requests
@@ -32,7 +32,7 @@ class SessionsController < Devise::SessionsController
   def respond_with(resource, _opts = {})
     if resource.persisted? && current_user
       token = request.env["warden-jwt_auth.token"]
-      render "api/v1/users/session", locals: { user: current_user, token: token }, status: :ok
+      render "api/users/session", locals: { user: current_user, token: token }, status: :ok
     else
       render json: {
         error: "Invalid Email or password."
