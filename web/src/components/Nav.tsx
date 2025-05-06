@@ -47,7 +47,7 @@ export default function Nav() {
                 {user.is_merchant && (
                   <div className="flex items-center space-x-4">
                     {/* Add merchant-specific navigation items here */}
-                    <p>Account Overview</p>
+                    <Link href="/merchants/account">Account Overview</Link>
                   </div>
                 )}
 

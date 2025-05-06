@@ -43,7 +43,7 @@ export default function StripeOnboarding() {
           stripe_account_status: "completed",
         });
 
-        router.push("/");
+        router.push("/merchants/account");
       },
       onError: (error) => {
         console.error(error);
