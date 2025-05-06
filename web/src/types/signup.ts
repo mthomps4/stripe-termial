@@ -12,12 +12,12 @@ export interface SignUpParams {
 
 export interface SessionResponse {
   user: {
-    id: number;
+    id: string;
     email: string;
     first_name: string;
     last_name: string;
-    stripe_connect_account_status?: string;
-    stripe_connect_account_id?: string;
+    stripe_account_status?: string | null;
+    stripe_account_id?: string | null;
     is_merchant?: boolean;
     is_admin?: boolean;
   };

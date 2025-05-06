@@ -51,10 +51,12 @@ export const CurrentUserProvider = ({
   }, []);
 
   useEffect(() => {
-    if (user?.is_merchant && user.stripe_connect_account_status !== "active") {
+    if (isLoading || !user) return;
+
+    if (user?.is_merchant && user.stripe_account_status !== "completed") {
       router.push("/stripe-onboarding");
     }
-  }, [user, router, pathname]);
+  }, [user, router, pathname, isLoading]);
 
   if (isLoading) {
     return <p>Loading...</p>;

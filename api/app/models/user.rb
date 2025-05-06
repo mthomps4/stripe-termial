@@ -24,10 +24,16 @@ class User < ApplicationRecord
   end
 
   def first_name
-    admin.first_name || merchant.first_name
+    return admin.first_name if is_admin?
+    return merchant.first_name if is_merchant?
+
+    nil
   end
 
   def last_name
-    admin.last_name || merchant.last_name
+    return admin.last_name if is_admin?
+    return merchant.last_name if is_merchant?
+
+    nil
   end
 end

@@ -42,7 +42,7 @@ export function useLogin({ onError }: { onError: (error: Error) => void }) {
       // TODO: more route handling here later...
       if (
         data.user.is_merchant &&
-        data.user.stripe_connect_account_status !== "active"
+        data.user.stripe_connect_account_status !== "completed"
       ) {
         router.push("/stripe-onboarding");
       } else {

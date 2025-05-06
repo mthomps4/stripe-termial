@@ -4,7 +4,7 @@ class Stripe::ConnectAccountService
   end
 
   def create_test_account
-    return if @user.stripe_connect_account_id.present?
+    return if @user.merchant&.stripe_account_id.present?
 
     account = Stripe::Account.create({
       type: 'custom',
@@ -13,31 +13,31 @@ class Stripe::ConnectAccountService
       capabilities: {
         card_payments: { requested: true },
         transfers: { requested: true },
-        payouts: { requested: true },
       },
       business_type: 'individual',
       business_profile: {
-        mcc: '7230', # Barber and Beauty Shops
-        url: 'https://sweet-treats.example.com',
+        mcc: '7230',
+        url: 'https://accessible.stripe.com',
         product_description: 'Barber services'
       },
       individual: {
         first_name: @user.first_name,
         last_name: @user.last_name,
         email: @user.email,
-        phone: '+1234567890',
+        phone: '0000000000',
         dob: {
           day: 1,
           month: 1,
-          year: 1990
+          year: 1901
         },
         address: {
-          line1: '123 Main St',
+          line1: 'address_full_match',
           city: 'San Francisco',
           state: 'CA',
           postal_code: '94111',
           country: 'US'
         },
+        id_number: '000000000',
         ssn_last_4: '0000'
       },
       tos_acceptance: {
@@ -53,11 +53,15 @@ class Stripe::ConnectAccountService
       }
     })
 
-    @user.update_columns(
-      stripe_connect_account_id: account.id,
-      stripe_connect_account_status: account.payouts_enabled ? 'active' : 'pending'
+    # complete_status = account.charges_enabled && account.payouts_enabled
+
+    @user.merchant.update_columns(
+      stripe_account_id: account.id,
+      stripe_account_status: "completed" # fudge this check for now...
     )
 
     account
+  rescue Stripe::StripeError => e
+    raise e
   end
 end

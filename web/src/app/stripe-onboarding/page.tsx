@@ -4,29 +4,51 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/contexts/CurrentUserProvider";
 import { WithAuth } from "@/components/WithAuth";
+import { useCreateTestConnectAccount } from "@/hooks/useCreateTestConnectAccount";
+import { SessionResponse } from "@/types/signup";
+import { USER_KEY } from "@/constants";
 
 export default function StripeOnboarding() {
   const router = useRouter();
   // withAuth already handles loading state
-  const { user } = useCurrentUser();
+  const { user, setUser } = useCurrentUser();
 
   useEffect(() => {
-    // Redirect if not logged in
-    if (!user) {
-      router.push("/auth/login");
-      return;
-    }
+    const status = user?.stripe_account_status;
 
-    const status = user.stripe_connect_account_status;
-
-    if (status === "active") {
-      router.push("/dashboard");
+    if (status === "completed") {
+      router.push("/");
     }
   }, [user, router]);
 
-  const handleOnboard = async () => {
-    // TODO
-  };
+  const { mutate: createTestConnectAccount, isPending } =
+    useCreateTestConnectAccount({
+      onSuccess: (data) => {
+        const connectAccountId = data.connect_account_id;
+
+        console.log({ data });
+
+        localStorage.setItem(
+          USER_KEY,
+          JSON.stringify({
+            ...(user as SessionResponse["user"]),
+            stripe_account_id: connectAccountId,
+            stripe_account_status: "completed",
+          })
+        );
+
+        setUser({
+          ...(user as SessionResponse["user"]),
+          stripe_account_id: connectAccountId,
+          stripe_account_status: "completed",
+        });
+
+        router.push("/");
+      },
+      onError: (error) => {
+        console.error(error);
+      },
+    });
 
   return (
     <WithAuth requiresAdmin={false}>
@@ -41,9 +63,12 @@ export default function StripeOnboarding() {
 
             <button
               className="btn-primary px-4 py-2 rounded-md"
-              onClick={handleOnboard}
+              onClick={() => createTestConnectAccount()}
+              disabled={isPending}
             >
-              Create Connect Account
+              {isPending
+                ? "Creating Connect Account..."
+                : "Create Connect Account"}
             </button>
           </div>
         </div>
