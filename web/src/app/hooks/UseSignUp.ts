@@ -1,15 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
 import { SIGNUP_URL } from "@/app/constants";
-import { SignUpParams, SignUpResponse } from "@/app/types/signup";
+import { SignUpParams, SessionResponse } from "@/app/types/signup";
 
 export const useSignUp = ({
   onSuccess,
   onError,
 }: {
-  onSuccess: (data: SignUpResponse) => void;
+  onSuccess: (data: SessionResponse) => void;
   onError: (error: Error) => void;
 }) => {
-  return useMutation<SignUpResponse, Error, SignUpParams>({
+  return useMutation<SessionResponse, Error, SignUpParams>({
     mutationFn: async (data) => {
       const response = await fetch(SIGNUP_URL, {
         method: "POST",
