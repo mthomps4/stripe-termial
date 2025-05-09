@@ -297,3 +297,17 @@ paths:
           description: logged out successfully
         '401':
           description: unauthorized
+  "/api/stripe/terminal/connection_token":
+    post:
+      summary: Creates a connection token for Stripe Terminal
+      tags:
+      - Stripe Terminal
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: connection token created
+        '401':
+          description: unauthorized
+        '400':
+          description: bad request from Stripe

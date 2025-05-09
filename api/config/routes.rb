@@ -27,5 +27,12 @@ Rails.application.routes.draw do
     resources :merchants, except: [ :create ] do
       post :create_test_connect_account, on: :collection
     end
+
+    # Stripe endpoints
+    namespace :stripe do
+      namespace :terminal do
+        post "connection_token"
+      end
+    end
   end
 end

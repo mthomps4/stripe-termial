@@ -458,7 +458,7 @@ DEPENDENCIES
   solid_cable
   solid_cache
   solid_queue
-  stripe
+  stripe (~> 15.0.0)
   thruster
   tzinfo-data
   webmock
