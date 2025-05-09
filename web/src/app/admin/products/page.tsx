@@ -6,13 +6,16 @@ import { useDebounce } from "use-debounce";
 
 export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+
   const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
 
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useGetProducts({ searchParam: debouncedSearchTerm });
+  const { data, isLoading, error } = useGetProducts({
+    searchParam: debouncedSearchTerm,
+    page,
+    perPage,
+  });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -21,6 +24,12 @@ export default function ProductsPage() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
+
+  if (!data) {
+    return <div>No Products Found</div>;
+  }
+
+  const { products, pagination } = data;
 
   return (
     <div className="p-4">
@@ -51,6 +60,42 @@ export default function ProductsPage() {
             </p>
           </div>
         ))}
+
+        <div className="col-span-full mt-4 flex items-center justify-between">
+          <div className="text-sm text-gray-700">
+            Showing page {pagination.current_page} of {pagination.total_pages} (
+            {pagination.total_count} total products)
+            <select
+              value={perPage}
+              onChange={(e) => {
+                setPerPage(parseInt(e.target.value));
+                setPage(1);
+              }}
+              className="ml-4 p-1 border rounded"
+            >
+              <option value="1">1 per page</option>
+              <option value="5">5 per page</option>
+              <option value="10">10 per page</option>
+              <option value="25">25 per page</option>
+            </select>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setPage((page) => Math.max(1, page - 1))}
+              disabled={!pagination.has_prev_page}
+              className="px-3 py-1 btn-secondary"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setPage((page) => page + 1)}
+              disabled={!pagination.has_next_page}
+              className="px-3 py-1 btn-secondary"
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

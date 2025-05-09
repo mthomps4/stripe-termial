@@ -78,6 +78,13 @@ a:hover {
   color: var(--color-neutral-50);
 }
 
+.btn-primary:disabled {
+  border-color: lightblue;
+  background-color: lightblue;
+  color: var(--color-neutral-50);
+  cursor: not-allowed;
+}
+
 .btn-secondary {
   background-color: transparent;
   color: var(--color-navy-600);
@@ -90,6 +97,12 @@ a:hover {
   color: var(--color-navy-400);
 }
 
+.btn-secondary:disabled {
+  border-color: lightblue;
+  background-color: lightblue;
+  color: var(--color-neutral-50);
+  cursor: not-allowed;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
