@@ -38,9 +38,9 @@ export default function Nav() {
                 {user.is_admin && (
                   <div className="flex items-center space-x-4">
                     {/* Add admin-specific navigation items here */}
-                    <p>Products</p>
-                    <p>Merchants</p>
-                    <p>Dashboards</p>
+                    <Link href="/admin/products">Products</Link>
+                    <Link href="/admin/#">Merchants</Link>
+                    <Link href="/admin/#">Dashboards</Link>
                   </div>
                 )}
 
