@@ -1,5 +1,5 @@
 class AuthenticationController < ApplicationController
-  skip_before_action :authenticate, only: [ :login, :register ]
+  skip_before_action :authenticate, only: [ :login, :signup ]
 
   def login
     if user = User.authenticate_by(email: params[:user][:email], password: params[:user][:password])
@@ -10,7 +10,7 @@ class AuthenticationController < ApplicationController
     end
   end
 
-  def register
+  def signup
     user = User.new(user_params)
 
     if user.save

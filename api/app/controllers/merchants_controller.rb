@@ -1,5 +1,5 @@
 class MerchantsController < ApplicationController
-  before_action :authenticate, only: [ :show, :update ]
+  before_action :authenticate, only: [ :show, :update, :create_test_connect_account ]
   before_action :authenticate_admin, only: [ :index, :destroy ]
 
   # Create happens on the registrations controller

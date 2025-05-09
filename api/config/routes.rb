@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   scope :api do
     # Authentication routes
     post "login", to: "authentication#login"
-    post "register", to: "authentication#register"
+    post "signup", to: "authentication#signup"
 
     resources :locations
     resources :readers

@@ -17,6 +17,8 @@ export const useLogin = () => {
 
   return useMutation({
     mutationFn: async (credentials: LoginCredentials) => {
+      console.log("credentials", credentials);
+      console.log("LOGIN_ROUTE", LOGIN_ROUTE);
       const response = await fetch(LOGIN_ROUTE, {
         method: "POST",
         headers: {
@@ -38,8 +40,8 @@ export const useLogin = () => {
       router.replace("/(tabs)");
     },
     onError: (err) => {
-      // TODO: Handle error
-      console.error("error", err);
+      console.log("err", err.message);
+      console.error("error", { err });
     },
   });
 };

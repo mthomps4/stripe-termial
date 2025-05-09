@@ -44,14 +44,12 @@ export default function SignUpPage() {
     }
 
     signUp({
-      user: {
-        email,
-        password,
-        confirmPassword,
-        merchant_attributes: {
-          first_name: firstName,
-          last_name: lastName,
-        },
+      email,
+      password,
+      confirmPassword,
+      merchant_attributes: {
+        first_name: firstName,
+        last_name: lastName,
       },
     });
   };

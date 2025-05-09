@@ -17,7 +17,7 @@
       },
       "env": {
         "BUILD_ENV": "development",
-        "API_URL": "https://{your_ngrok_url}.app"
+        "API_URL": "https://fc4458f2f2f9.ngrok.app"
       }
     },
     "staging": {
@@ -29,7 +29,7 @@
       },
       "env": {
         "BUILD_ENV": "staging",
-        "API_URL": "https://fly-staging.com/api/v1"
+        "API_URL": "https://fly-staging.com"
       }
     },
     "production": {
@@ -41,7 +41,7 @@
       },
       "env": {
         "BUILD_ENV": "production",
-        "API_URL": "https://fly-production.com/api/v1"
+        "API_URL": "https://fly-production.com"
       }
     }
   },
