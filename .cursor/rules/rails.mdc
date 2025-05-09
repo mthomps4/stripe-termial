@@ -1,0 +1,5 @@
+---
+description: Rails
+globs: *.rb
+---
+Users are authed using JWT and not sessions.

@@ -1,0 +1,5 @@
+---
+description: Rails Tests
+globs: api/spec/**
+---
+Users are authed using JWT and not sessions.
