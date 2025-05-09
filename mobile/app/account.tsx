@@ -8,9 +8,10 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 
-export default function Login() {
+export default function Account() {
   const { user, setUser } = useCurrentUser();
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -40,6 +41,11 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require("@/assets/images/sweet_cuts.png")}
+        style={styles.logo}
+      />
+
       <Text style={styles.title}>Login</Text>
 
       <View style={styles.form}>
@@ -77,6 +83,11 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+  },
   container: {
     flex: 1,
     justifyContent: "center",

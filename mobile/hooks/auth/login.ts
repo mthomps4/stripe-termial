@@ -17,7 +17,6 @@ export const useLogin = ({
   onSuccess: (data: SessionResponse) => void;
   onError: (error: Error) => void;
 }) => {
-  console.log(LOGIN_ROUTE);
   return useMutation({
     mutationFn: async (credentials: LoginCredentials) => {
       const response = await fetch(LOGIN_ROUTE, {

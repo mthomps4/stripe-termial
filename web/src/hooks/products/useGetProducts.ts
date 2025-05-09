@@ -21,8 +21,6 @@ export function useGetProducts({
     per_page: perPage.toString(),
   });
 
-  console.log(queryParams.toString());
-
   return useQuery<GetProductsResponse, Error>({
     queryKey: ["products", searchParam, page, perPage, user?.id],
     queryFn: async (): Promise<GetProductsResponse> => {
