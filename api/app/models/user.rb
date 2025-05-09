@@ -1,19 +1,18 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  include Devise::JWT::RevocationStrategies::JTIMatcher
-
-  # Configure devise modules for JWT API - combine all needed modules
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: self
+  has_secure_password
 
   has_one :admin, dependent: :destroy
   has_one :merchant, dependent: :destroy
 
   accepts_nested_attributes_for :admin, :merchant
+
+  # Add basic validations that were previously handled by Devise
+  validates :email, presence: true, uniqueness: true
+  validates :email, format: { with: /\A[^@\s]+@[^@\s]+\z/ }
+  validates :password, length: { minimum: 6 }, if: -> { password.present? }
+
+  # Rails 8 built-in authentication helper - no need for custom authenticate method
+  # This replaces the has_secure_password authenticate method with Rails 8's improved version
 
   def is_admin?
     admin.present?

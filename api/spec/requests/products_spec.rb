@@ -37,7 +37,7 @@ RSpec.describe 'Products API', type: :request do
           }
 
         let(:user) { create(:user) }
-        let(:Authorization) { "Bearer #{JWT::Auth::Token.new.encode(user_id: user.id)}" }
+        let(:Authorization) { "Bearer #{JwtService.encode(user_id: user.id)}" }
         run_test!
       end
 
@@ -72,7 +72,7 @@ RSpec.describe 'Products API', type: :request do
 
         let(:user) { create(:user) }
         let!(:admin) { Admin.create(user: user) }
-        let(:Authorization) { "Bearer #{JWT::Auth::Token.new.encode(user_id: user.id)}" }
+        let(:Authorization) { "Bearer #{JwtService.encode(user_id: user.id)}" }
         let(:product) { { name: 'Test Product', price: 1000 } }
         run_test!
       end
@@ -102,7 +102,7 @@ RSpec.describe 'Products API', type: :request do
           }
 
         let(:user) { create(:user) }
-        let(:Authorization) { "Bearer #{JWT::Auth::Token.new.encode(user_id: user.id)}" }
+        let(:Authorization) { "Bearer #{JwtService.encode(user_id: user.id)}" }
         let(:id) { create(:product).id }
         run_test!
       end
@@ -137,7 +137,7 @@ RSpec.describe 'Products API', type: :request do
 
         let(:user) { create(:user) }
         let!(:admin) { Admin.create(user: user) }
-        let(:Authorization) { "Bearer #{JWT::Auth::Token.new.encode(user_id: user.id)}" }
+        let(:Authorization) { "Bearer #{JwtService.encode(user_id: user.id)}" }
         let(:id) { create(:product).id }
         let(:product) { { name: 'Updated Product' } }
         run_test!
@@ -155,7 +155,7 @@ RSpec.describe 'Products API', type: :request do
       response '204', 'product deleted' do
         let(:user) { create(:user) }
         let!(:admin) { Admin.create(user: user) }
-        let(:Authorization) { "Bearer #{JWT::Auth::Token.new.encode(user_id: user.id)}" }
+        let(:Authorization) { "Bearer #{JwtService.encode(user_id: user.id)}" }
         let(:id) { create(:product).id }
         run_test!
       end

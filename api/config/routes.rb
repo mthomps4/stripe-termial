@@ -1,18 +1,4 @@
 Rails.application.routes.draw do
-  # Configure Devise routes with proper scope and controllers
-  devise_for :users,
-    path: "api",
-    path_names: {
-      sign_in: "login",
-      sign_out: "logout",
-      registration: "signup"
-    },
-    controllers: {
-      sessions: "sessions",
-      registrations: "registrations"
-    },
-    defaults: { format: :json }
-
   mount Rswag::Ui::Engine => "/api-docs"
   mount Rswag::Api::Engine => "/api-docs"
 
@@ -21,6 +7,10 @@ Rails.application.routes.draw do
 
   # API routes
   scope :api do
+    # Authentication routes
+    post "login", to: "authentication#login"
+    post "register", to: "authentication#register"
+
     resources :locations
     resources :readers
     resources :products

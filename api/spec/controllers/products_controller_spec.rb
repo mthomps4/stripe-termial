@@ -10,7 +10,7 @@ RSpec.describe ProductsController, type: :controller do
     context "with valid authentication" do
       before do
         @user = FactoryBot.create(:user)
-        sign_in @user
+        sign_in_user(@user)
       end
 
       it "returns a success response" do
@@ -39,7 +39,7 @@ RSpec.describe ProductsController, type: :controller do
     context "with valid authentication" do
       before do
         @user = FactoryBot.create(:user)
-        sign_in @user
+        sign_in_user(@user)
       end
 
       it "returns a success response" do
@@ -61,7 +61,7 @@ RSpec.describe ProductsController, type: :controller do
       before do
         @admin_user = FactoryBot.create(:user)
         Admin.create(user: @admin_user)
-        sign_in @admin_user
+        sign_in_user(@admin_user)
       end
 
       it "creates a new product" do
@@ -75,7 +75,7 @@ RSpec.describe ProductsController, type: :controller do
     context "with regular user authentication" do
       before do
         @user = FactoryBot.create(:user)
-        sign_in @user
+        sign_in_user(@user)
       end
 
       it "returns unauthorized" do
@@ -97,7 +97,7 @@ RSpec.describe ProductsController, type: :controller do
       before do
         @admin_user = FactoryBot.create(:user)
         Admin.create(user: @admin_user)
-        sign_in @admin_user
+        sign_in_user(@admin_user)
       end
 
       it "updates the product" do
@@ -111,7 +111,7 @@ RSpec.describe ProductsController, type: :controller do
     context "with regular user authentication" do
       before do
         @user = FactoryBot.create(:user)
-        sign_in @user
+        sign_in_user(@user)
       end
 
       it "returns unauthorized" do
@@ -133,7 +133,7 @@ RSpec.describe ProductsController, type: :controller do
       before do
         @admin_user = FactoryBot.create(:user)
         Admin.create(user: @admin_user)
-        sign_in @admin_user
+        sign_in_user(@admin_user)
       end
 
       it "destroys the product" do
@@ -148,7 +148,7 @@ RSpec.describe ProductsController, type: :controller do
     context "with regular user authentication" do
       before do
         @user = FactoryBot.create(:user)
-        sign_in @user
+        sign_in_user(@user)
       end
 
       it "returns unauthorized" do

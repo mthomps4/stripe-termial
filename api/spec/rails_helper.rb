@@ -49,14 +49,14 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
-  # Include Devise test helpers for controller specs
-  config.include Devise::Test::ControllerHelpers, type: :controller
-
   # Set JSON as the default format for controller specs
   config.before(:each, type: :controller) do
     request.env["HTTP_ACCEPT"] = "application/json"
     request.env["CONTENT_TYPE"] = "application/json"
   end
+
+  config.include JwtHelper, type: :controller
+  config.include JwtHelper, type: :request
 end
 
 # Move this configuration after RSpec.configure

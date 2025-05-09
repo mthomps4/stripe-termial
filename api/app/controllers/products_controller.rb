@@ -1,12 +1,15 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [ :show, :update, :destroy ]
-  before_action :authenticate_user!, only: [ :index, :show ]
-  before_action :authenticate_admin!, only: [ :create, :update, :destroy ]
+  before_action :authenticate, only: [ :index, :show ]
+  before_action :authenticate_admin, only: [ :create, :update, :destroy ]
 
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(params[:per_page])
     render "api/products/index", status: :ok
+  rescue => e
+    puts("Error showing products: #{e.message}")
+    render json: { error: e.message }, status: :internal_server_error
   end
 
   def show

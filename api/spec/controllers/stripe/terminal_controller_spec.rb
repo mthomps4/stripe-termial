@@ -4,7 +4,7 @@ RSpec.describe Stripe::TerminalController, type: :controller do
   before do
     # Sign in a user
     @user = FactoryBot.create(:user)
-    sign_in @user
+    sign_in_user @user
   end
 
   describe "POST #connection_token" do

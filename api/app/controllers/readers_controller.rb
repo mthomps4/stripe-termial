@@ -1,6 +1,6 @@
 class ReadersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_admin!, only: [ :destroy ]
+  before_action :authenticate
+  before_action :authenticate_admin, only: [ :destroy ]
 
   def index
     @q = Reader.ransack(params[:q])
@@ -12,7 +12,7 @@ class ReadersController < ApplicationController
     reader = Reader.find(params[:id])
     render json: reader
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Reader not found' }, status: :not_found
+    render json: { error: "Reader not found" }, status: :not_found
   end
 
   # REGISTRATION WITH STRIPE OCCURS VIA SDK
@@ -35,7 +35,7 @@ class ReadersController < ApplicationController
       render json: { errors: reader.errors.full_messages }, status: :unprocessable_entity
     end
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Reader not found' }, status: :not_found
+    render json: { error: "Reader not found" }, status: :not_found
   end
 
   def destroy
@@ -43,7 +43,7 @@ class ReadersController < ApplicationController
     reader.destroy
     head :no_content
   rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Reader not found' }, status: :not_found
+    render json: { error: "Reader not found" }, status: :not_found
   end
 
   private

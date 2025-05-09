@@ -1,6 +1,6 @@
 class MerchantsController < ApplicationController
-  before_action :authenticate_user!, only: [ :show, :update ]
-  before_action :authenticate_admin!, only: [ :index, :destroy ]
+  before_action :authenticate, only: [ :show, :update ]
+  before_action :authenticate_admin, only: [ :index, :destroy ]
 
   # Create happens on the registrations controller
 
@@ -20,7 +20,7 @@ class MerchantsController < ApplicationController
     if current_user.merchant&.stripe_account_id.present?
       render json: {
         message: "User already has a Stripe connect account",
-        status: "error",
+        status: "error"
       }, status: :bad_request
     end
 
@@ -32,14 +32,14 @@ class MerchantsController < ApplicationController
       message: "Test connect account created",
       status: "success",
       connect_account_id: account.id,
-      connect_account_status: "completed", # fudge this check for now...
+      connect_account_status: "completed" # fudge this check for now...
     }, status: :created
 
   rescue StandardError => e
     render json: {
       message: "Failed to create test connect account",
       status: "error",
-      error: e.message,
+      error: e.message
     }, status: :internal_server_error
   end
 end
