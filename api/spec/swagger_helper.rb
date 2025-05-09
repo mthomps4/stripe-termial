@@ -125,8 +125,12 @@ RSpec.configure do |config|
           description: 'User authentication endpoints'
         },
         {
-          name: 'Locations',
-          description: 'Location management endpoints'
+          name: 'Products',
+          description: 'Product management endpoints'
+        },
+        {
+          name: 'Stripe Terminal',
+          description: 'Stripe Terminal integration endpoints'
         }
       ]
     }

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :product do
-    name { "MyString" }
-    price { 1 }
+    sequence(:name) { |n| "Product #{n}" }
+    price { 1000 }
   end
 end

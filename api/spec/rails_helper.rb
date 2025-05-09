@@ -51,6 +51,12 @@ RSpec.configure do |config|
 
   # Include Devise test helpers for controller specs
   config.include Devise::Test::ControllerHelpers, type: :controller
+
+  # Set JSON as the default format for controller specs
+  config.before(:each, type: :controller) do
+    request.env["HTTP_ACCEPT"] = "application/json"
+    request.env["CONTENT_TYPE"] = "application/json"
+  end
 end
 
 # Move this configuration after RSpec.configure

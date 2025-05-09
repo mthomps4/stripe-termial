@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :update, :destroy]
+  before_action :set_product, only: [ :show, :update, :destroy ]
   before_action :authenticate_user!, only: [ :index, :show ]
   before_action :authenticate_admin!, only: [ :create, :update, :destroy ]
 
@@ -11,6 +11,9 @@ class ProductsController < ApplicationController
 
   def show
     render "api/products/show", status: :ok
+  rescue => e
+    puts("Error showing product: #{e.message}")
+    render json: { error: e.message }, status: :internal_server_error
   end
 
   def create
@@ -21,6 +24,9 @@ class ProductsController < ApplicationController
     else
       render json: { errors: @product.errors }, status: :unprocessable_entity
     end
+  rescue => e
+    puts("Error creating product: #{e.message}")
+    render json: { error: e.message }, status: :internal_server_error
   end
 
   def update
@@ -29,6 +35,9 @@ class ProductsController < ApplicationController
     else
       render json: { errors: @product.errors }, status: :unprocessable_entity
     end
+  rescue => e
+    puts("Error updating product: #{e.message}")
+    render json: { error: e.message }, status: :internal_server_error
   end
 
   def destroy

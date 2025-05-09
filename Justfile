@@ -53,11 +53,23 @@ start-web:
     cd web && npm run dev
 
 # Run tests across all projects
-test:
+test target="api" path="":
+    @just test-{{target}} {{path}}
+
+# Run API tests with optional focus and debugging
+test-api path="" options="":
     @echo "Running API tests..."
-    cd api && bin/rails test
-    @echo "Running Web tests..."
-    cd web && npm test
+    cd api && RAILS_ENV=test bundle exec rspec {{path}} {{options}}
+
+# Run API tests with focus tag
+focus-api tag="":
+    @echo "Running API tests with focus on tag: {{tag}}"
+    cd api && RAILS_ENV=test bundle exec rspec --tag {{tag}}
+
+# Run API tests with debug output
+debug-api path="":
+    @echo "Running API tests with debug output..."
+    cd api && RAILS_ENV=test VSCODE_DEBUG=true bundle exec rspec {{path}}
 
 # Clean all build artifacts
 clean:

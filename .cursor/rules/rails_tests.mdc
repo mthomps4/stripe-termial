@@ -1,0 +1,7 @@
+---
+description: Rails Tests
+globs: api/spec/**
+---
+Users are authed using JWT and not sessions. Use existing tests as an example. Do not create additional helpers or support methods unless asked to do so.
+
+Assume the controller code is good, and only the tests need to be fixed to match what the controller is doing.

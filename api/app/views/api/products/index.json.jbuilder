@@ -1,5 +1,5 @@
 json.products @products do |product|
-  json.partial! 'api/products/product', product: product
+  json.partial! "api/products/product", product: product
 end
 json.pagination do
   json.current_page @products.current_page

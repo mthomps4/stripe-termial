@@ -9,11 +9,18 @@
 #   end
 
 
-admin = User.find_or_create_by(email: "admin@asdf.com", password: "asdfasdf", password_confirmation: "asdfasdf")
-Admin.create(user: admin)
+# Find user by email only, or create with password if it doesn't exist
+admin = User.find_by(email: "admin@asdf.com")
+unless admin
+  admin = User.create!(email: "admin@asdf.com", password: "asdfasdf", password_confirmation: "asdfasdf")
+end
+Admin.find_or_create_by(user: admin)
 
-merchant = User.find_or_create_by(email: "merchant@asdf.com", password: "asdfasdf", password_confirmation: "asdfasdf")
-Merchant.create(user: merchant, first_name: "John", last_name: "Doe")
+merchant = User.find_by(email: "merchant@asdf.com")
+unless merchant
+  merchant = User.create!(email: "merchant@asdf.com", password: "asdfasdf", password_confirmation: "asdfasdf")
+end
+Merchant.find_or_create_by(user: merchant, first_name: "John", last_name: "Doe")
 
 10.times do |i|
   count = i + 1

@@ -133,83 +133,163 @@ servers:
 tags:
 - name: Authentication
   description: User authentication endpoints
-- name: Locations
-  description: Location management endpoints
+- name: Products
+  description: Product management endpoints
+- name: Stripe Terminal
+  description: Stripe Terminal integration endpoints
 paths:
-  "/api/locations":
+  "/api/products":
     get:
-      summary: List locations
+      summary: Lists all products
       tags:
-      - Locations
+      - Products
+      security:
+      - bearer: []
       parameters:
       - name: page
         in: query
         required: false
+        description: Page number
         schema:
           type: integer
       - name: per_page
         in: query
         required: false
+        description: Items per page
         schema:
           type: integer
       responses:
         '200':
-          description: locations found
+          description: products found
+        '401':
+          description: unauthorized
+    post:
+      summary: Creates a product
+      tags:
+      - Products
+      security:
+      - bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: product created
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  locations:
-                    type: array
-                    items:
-                      "$ref": "#/components/schemas/Location"
-                  meta:
-                    type: object
-                    properties:
-                      total_pages:
-                        type: integer
-                      total_count:
-                        type: integer
-                      current_page:
-                        type: integer
-                      per_page:
-                        type: integer
-                      next_page:
-                        type: integer
-                        nullable: true
-                      prev_page:
-                        type: integer
-                        nullable: true
-    post:
-      summary: Creates a location
-      tags:
-      - Locations
-      security:
-      - Bearer: []
-      parameters:
-      - name: Authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '201':
-          description: location created
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  price:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
         '401':
           description: unauthorized
-        '422':
-          description: invalid request
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                location:
-                  "$ref": "#/components/schemas/LocationInput"
+                name:
+                  type: string
+                price:
+                  type: integer
               required:
-              - location
+              - name
+              - price
+  "/api/products/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: Retrieves a product
+      tags:
+      - Products
+      security:
+      - bearer: []
+      responses:
+        '200':
+          description: product found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  price:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+        '401':
+          description: unauthorized
+    put:
+      summary: Updates a product
+      tags:
+      - Products
+      security:
+      - bearer: []
+      parameters: []
+      responses:
+        '200':
+          description: product updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  price:
+                    type: integer
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+        '401':
+          description: unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: integer
+    delete:
+      summary: Deletes a product
+      tags:
+      - Products
+      security:
+      - bearer: []
+      responses:
+        '204':
+          description: product deleted
+        '401':
+          description: unauthorized
   "/api/signup":
     post:
       summary: Creates a user account
@@ -295,5 +375,41 @@ paths:
       responses:
         '200':
           description: logged out successfully
+        '401':
+          description: unauthorized
+  "/api/stripe/terminal/connection_token":
+    post:
+      summary: Creates a connection token for Stripe Terminal
+      tags:
+      - Stripe Terminal
+      security:
+      - Bearer: []
+      description: "Creates a connection token for Stripe Terminal. Requires authentication.
+        \n                  To test: First call POST /api/login with valid credentials
+        to get a token,\n                  then click \"Authorize\" at the top of
+        this page and enter that token."
+      responses:
+        '200':
+          description: connection token generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  secret:
+                    type: string
+                required:
+                - secret
+        '400':
+          description: stripe error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
         '401':
           description: unauthorized
