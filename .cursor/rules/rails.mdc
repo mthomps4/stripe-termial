@@ -3,3 +3,5 @@ description: Rails
 globs: *.rb
 ---
 Users are authed using JWT and not sessions.
+
+Routes are namedspace with /api in the routes, but do NOT create an api directory.
