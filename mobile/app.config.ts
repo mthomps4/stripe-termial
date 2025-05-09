@@ -19,7 +19,7 @@ const getAppConfig = (): ProfileConfig => {
       name: "mt-sweet-cuts-pos-production",
       slug: "mt-sweet-cuts-pos-production",
       scheme: "mt-sweet-cuts-pos-production",
-      androidBundleIdentifier: "com.mt-sweet-cuts-pos.app",
+      androidBundleIdentifier: "com.mt_sweet_cuts_pos.app",
       iosBundleIdentifier: "com.mt-sweet-cuts-pos.app",
       icon: "./assets/images/sweet_cuts.png",
       splash_url: "./assets/images/splash.png",
@@ -32,7 +32,7 @@ const getAppConfig = (): ProfileConfig => {
       name: "mt-sweet-cuts-pos-staging",
       slug: "mt-sweet-cuts-pos-staging",
       scheme: "mt-sweet-cuts-pos-staging",
-      androidBundleIdentifier: "com.staging.mt-sweet-cuts-pos.app",
+      androidBundleIdentifier: "com.staging.mt_sweet_cuts_pos.app",
       iosBundleIdentifier: "com.staging.mt-sweet-cuts-pos.app",
       icon: "./assets/images/sweet_cuts_staging.png",
       splash_url: "./assets/images/splash_staging.png",
@@ -44,7 +44,7 @@ const getAppConfig = (): ProfileConfig => {
     name: "mt-sweet-cuts-pos-dev",
     slug: "mt-sweet-cuts-pos-dev",
     scheme: "mt-sweet-cuts-pos-dev",
-    androidBundleIdentifier: "com.dev.mt-sweet-cuts-pos.app",
+    androidBundleIdentifier: "com.dev.mt_sweet_cuts_pos.app",
     iosBundleIdentifier: "com.dev.mt-sweet-cuts-pos.app",
     icon: "./assets/images/sweet_cuts_dev.png",
     splash_url: "./assets/images/splash_dev.png",
@@ -114,23 +114,18 @@ export default ({ config }: ConfigContext): ExpoConfig => {
           backgroundColor: "#d3b49a",
         },
       ],
-      // FUTURE ADD
-      // [
-      //   "@stripe/stripe-terminal-react-native",
-      //   {
-      //     bluetoothBackgroundMode: true,
-      //     bluetoothPeripheralPermission:
-      //       "Bluetooth access is required in order to connect to supported bluetooth card readers.",
-      //     bluetoothAlwaysUsagePermission:
-      //       "This app uses Bluetooth to connect to supported card readers.",
-      //   },
-      // ],
-      // [
-      //   "react-native-permissions",
-      //   {
-      //     iosPermissions: ["Bluetooth"],
-      //   },
-      // ],
+      [
+        "@stripe/stripe-terminal-react-native",
+        {
+          bluetoothBackgroundMode: true,
+          locationWhenInUsePermission:
+            "Location access is required in order to accept payments.",
+          bluetoothPeripheralPermission:
+            "Bluetooth access is required in order to connect to supported bluetooth card readers.",
+          bluetoothAlwaysUsagePermission:
+            "This app uses Bluetooth to connect to supported card readers.",
+        },
+      ],
     ],
     experiments: {
       typedRoutes: true,
