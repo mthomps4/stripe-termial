@@ -74,6 +74,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     extra: {
       eas: {
         projectId: appConfig.projectId,
+        apiUrl: process.env.API_URL,
+        buildEnv: process.env.BUILD_ENV,
       },
     },
     ios: {

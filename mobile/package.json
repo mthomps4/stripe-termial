@@ -7,6 +7,8 @@
     "android": "BUILD_ENV=development expo start --android",
     "ios": "BUILD_ENV=development expo start --ios",
     "dev": "BUILD_ENV=development expo start --dev-client",
+    "run:ios": "BUILD_ENV=development expo run:ios",
+    "run:android": "BUILD_ENV=development expo run:android",
     "prebuild": "expo prebuild",
     "build:dev": "BUILD_ENV=development eas build --profile development",
     "build:preview": "BUILD_ENV=preview eas build --profile preview",
@@ -22,6 +24,8 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
+    "@stripe/stripe-terminal-react-native": "0.0.1-beta.24",
+    "@tanstack/react-query": "^5.75.7",
     "expo": "~53.0.5",
     "expo-blur": "~14.1.4",
     "expo-constants": "~17.1.5",
@@ -44,14 +48,14 @@
     "react-native-screens": "~4.10.0",
     "react-native-web": "~0.20.0",
     "react-native-webview": "13.13.5",
-    "@stripe/stripe-terminal-react-native": "0.0.1-beta.24"
+    "@react-native-async-storage/async-storage": "2.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
-    "typescript": "~5.8.3",
     "eslint": "^9.25.0",
-    "eslint-config-expo": "~9.2.0"
+    "eslint-config-expo": "~9.2.0",
+    "typescript": "~5.8.3"
   },
   "private": true
 }
