@@ -1,11 +1,19 @@
 import { useCurrentUser } from "@/contexts/CurrentUserProvider";
+import { logout } from "@/utils/auth";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function ConnectWarning() {
-  const { user } = useCurrentUser();
+  const { user, setToken, setUser } = useCurrentUser();
   const router = useRouter();
+
+  const logoutUser = async () => {
+    setToken(null);
+    setUser(null);
+    await logout();
+    router.replace("/login");
+  };
 
   useEffect(() => {
     if (!user || !user.is_merchant) {
@@ -19,6 +27,8 @@ export default function ConnectWarning() {
       <Text style={styles.message}>
         Please login on desktop to complete your Stripe Onboarding
       </Text>
+
+      <Button title="Logout" onPress={() => logoutUser()} />
     </View>
   );
 }

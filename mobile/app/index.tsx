@@ -1,4 +1,4 @@
-import { Stack, Redirect } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 
 import { useCurrentUser } from "@/contexts/CurrentUserProvider";
 import { StatusBar } from "expo-status-bar";
@@ -14,7 +14,11 @@ export default function Home() {
 
   // If no user, redirect to login
   if (!user) {
-    return <Redirect href="/account" />;
+    return <Redirect href="/login" />;
+  }
+
+  if (user.is_merchant && user.stripe_account_status !== "completed") {
+    return <Redirect href="/connect-warning" />;
   }
 
   // If user exists, show main app

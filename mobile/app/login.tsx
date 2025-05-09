@@ -3,34 +3,26 @@ import { useLogin } from "@/hooks/auth/login";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
+  Image,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Image,
 } from "react-native";
 
-export default function Account() {
-  const { user, setUser } = useCurrentUser();
+export default function Login() {
+  const { user } = useCurrentUser();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { mutate: login, isPending } = useLogin({
-    onSuccess: (data) => {
-      setUser(data.user);
-      router.replace("/");
-    },
-    onError: (err) => {
-      setError(err.message);
-    },
-  });
+  const { mutate: login, isPending } = useLogin();
 
   useEffect(() => {
     if (user) {
-      router.replace("/");
+      router.replace("/(tabs)");
     }
   }, [user, router]);
 
