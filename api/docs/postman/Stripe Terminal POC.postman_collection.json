@@ -385,7 +385,23 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [
+								{
+									"key": "q[name_cont]",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "per_page",
+									"value": "5",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:4000/api/products",
