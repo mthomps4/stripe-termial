@@ -12,17 +12,30 @@ import {
 } from "react-native";
 
 export default function Login() {
-  const { user } = useCurrentUser();
+  const { user, setUser, setToken } = useCurrentUser();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { mutate: login, isPending } = useLogin();
+  const onSuccess = (data: any) => {
+    setUser(data.user);
+    setToken(data.token);
+    router.replace("/(sweet-cuts)");
+  };
+
+  const onError = (err: any) => {
+    console.error("error", { err });
+  };
+
+  const { mutate: login, isPending } = useLogin({
+    onSuccess,
+    onError,
+  });
 
   useEffect(() => {
     if (user) {
-      router.replace("/sweet-cuts");
+      router.replace("/(sweet-cuts)");
     }
   }, [user, router]);
 

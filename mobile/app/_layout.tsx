@@ -10,8 +10,9 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { CurrentUserProvider } from "@/contexts/CurrentUserProvider";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { Slot, Stack } from "expo-router";
+import { Slot } from "expo-router";
 import { useEffect } from "react";
+import { CartProvider } from "@/contexts/CartProvider";
 
 const queryClient = new QueryClient();
 SplashScreen.preventAutoHideAsync();
@@ -37,7 +38,9 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <QueryClientProvider client={queryClient}>
         <CurrentUserProvider>
-          <Slot />
+          <CartProvider>
+            <Slot />
+          </CartProvider>
         </CurrentUserProvider>
       </QueryClientProvider>
     </ThemeProvider>

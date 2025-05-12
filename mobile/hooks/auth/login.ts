@@ -1,9 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-
 import { LOGIN_ROUTE } from "@/constants/apiRoutes";
-import { useCurrentUser } from "@/contexts/CurrentUserProvider";
-import { useRouter } from "expo-router";
-
 interface LoginCredentials {
   user: {
     email: string;
@@ -11,10 +7,13 @@ interface LoginCredentials {
   };
 }
 
-export const useLogin = () => {
-  const { setUser, setToken } = useCurrentUser();
-  const router = useRouter();
-
+export const useLogin = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: (data: any) => void;
+  onError: (err: any) => void;
+}) => {
   return useMutation({
     mutationFn: async (credentials: LoginCredentials) => {
       const response = await fetch(LOGIN_ROUTE, {
@@ -33,12 +32,10 @@ export const useLogin = () => {
       return response.json();
     },
     onSuccess: (data) => {
-      setUser(data.user);
-      setToken(data.token);
-      router.replace("/sweet-cuts");
+      onSuccess(data);
     },
     onError: (err) => {
-      console.error("error", { err });
+      onError(err);
     },
   });
 };

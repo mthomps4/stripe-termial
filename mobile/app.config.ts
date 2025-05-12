@@ -112,8 +112,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         "expo-splash-screen",
         {
           image: appConfig.splash_url,
-          imageWidth: 200,
-          resizeMode: "contain",
+          resizeMode: "cover",
           backgroundColor: "#d3b49a",
         },
       ],

@@ -22,6 +22,7 @@ const MAPPING = {
   "person.fill": "person",
   "chevron.left.forwardslash.chevron.right": "code",
   "chevron.right": "chevron-right",
+  "cart.fill": "shopping-cart",
 } as IconMapping;
 
 /**
