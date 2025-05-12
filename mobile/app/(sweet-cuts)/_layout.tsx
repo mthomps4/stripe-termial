@@ -31,6 +31,8 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
+          headerShown: true,
+          headerTitle: "Sweet Cuts",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="house.fill" color={color} />
           ),
@@ -40,6 +42,8 @@ export default function TabLayout() {
         name="account"
         options={{
           title: "Account",
+          headerShown: true,
+          headerTitle: "Account Management",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={28} name="person.fill" color={color} />
           ),

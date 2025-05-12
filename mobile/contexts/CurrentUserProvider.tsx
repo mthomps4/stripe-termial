@@ -37,7 +37,6 @@ export const CurrentUserProvider = ({
   const [token, setToken] = useState<SessionResponse["token"] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     // Initialize user and token from AsyncStorage on mount
@@ -54,12 +53,16 @@ export const CurrentUserProvider = ({
   }, []);
 
   useEffect(() => {
-    if (isLoading || !user) return;
+    if (isLoading) return;
+
+    if (!user) {
+      router.push("/login");
+    }
 
     if (user?.is_merchant && user.stripe_account_status !== "completed") {
       router.push("/connect-warning");
     }
-  }, [user, router, isLoading, pathname]);
+  }, [user, router, isLoading]);
 
   if (isLoading) {
     return (

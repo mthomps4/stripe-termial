@@ -22,7 +22,7 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
-      router.replace("/(tabs)");
+      router.replace("/sweet-cuts");
     }
   }, [user, router]);
 

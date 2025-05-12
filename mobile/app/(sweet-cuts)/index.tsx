@@ -1,13 +1,8 @@
 import { StyleSheet, View } from "react-native";
-
 import { ThemedText } from "@/components/ThemedText";
-import { useCurrentUser } from "@/contexts/CurrentUserProvider";
 import { useGetProducts } from "@/hooks/products/useGetProducts";
-import { Redirect } from "expo-router";
 
 export default function HomeScreen() {
-  const { user } = useCurrentUser();
-
   const {
     data: products,
     isLoading,
@@ -17,11 +12,6 @@ export default function HomeScreen() {
     page: 1,
     perPage: 10,
   });
-
-  // TODO: Equiv of withAuth hook?
-  if (!user) {
-    return <Redirect href="/account" />;
-  }
 
   if (isLoading) {
     return (
