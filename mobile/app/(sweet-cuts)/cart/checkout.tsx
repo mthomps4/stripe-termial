@@ -1,9 +1,9 @@
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
-import { router } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
 import { brandColors } from "@/constants/Colors";
 import { useCart } from "@/contexts/CartProvider";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function CheckoutScreen() {
   const { items, total } = useCart();
@@ -11,7 +11,7 @@ export default function CheckoutScreen() {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => router.back()} style={styles.backLink}>
-        <Ionicons name="arrow-back" size={12} color={brandColors.navy[700]} />
+        <Ionicons name="arrow-back" size={12} color={brandColors.sky[700]} />
         <Text style={styles.backLinkText}>Manage Cart</Text>
       </TouchableOpacity>
       <View style={styles.summaryContainer}>
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   backLinkText: {
-    color: brandColors.navy[700],
+    color: brandColors.sky[900],
   },
   container: {
     flex: 1,
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
   },
   summaryTitle: {
     marginBottom: 16,
+    color: brandColors.sky[900],
   },
   itemRow: {
     flexDirection: "row",
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     fontWeight: "bold",
+    color: brandColors.sky[900],
   },
   quantityPrice: {
     flexDirection: "row",
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
   },
   quantity: {
     marginRight: 8,
+    color: brandColors.neutral[900],
   },
   price: {
     fontSize: 16,
@@ -107,7 +110,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: brandColors.navy[200],
+    backgroundColor: brandColors.neutral[300],
     marginVertical: 16,
   },
   totalRow: {
@@ -118,18 +121,21 @@ const styles = StyleSheet.create({
   totalLabel: {
     fontSize: 16,
     fontWeight: "bold",
+    color: brandColors.sky[900],
   },
   totalAmount: {
     fontSize: 16,
     fontWeight: "bold",
+    color: brandColors.sky[900],
   },
   checkoutButton: {
-    backgroundColor: brandColors.lime[500],
+    alignItems: "center",
+    backgroundColor: brandColors.lime[600],
     padding: 16,
     borderRadius: 8,
   },
   checkoutButtonText: {
-    color: "white",
+    color: brandColors.neutral[50],
     fontSize: 16,
     fontWeight: "bold",
   },

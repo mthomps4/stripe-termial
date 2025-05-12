@@ -1,15 +1,16 @@
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  Alert,
-} from "react-native";
 import { ThemedText } from "@/components/ThemedText";
-import { useGetProducts } from "@/hooks/products/useGetProducts";
+import { brandColors } from "@/constants/Colors";
 import { useCart } from "@/contexts/CartProvider";
+import { useGetProducts } from "@/hooks/products/useGetProducts";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import {
+  Alert,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function HomeScreen() {
   const {
@@ -83,9 +84,6 @@ export default function HomeScreen() {
         style={styles.productList}
         contentContainerStyle={{ paddingBottom: total > 0 ? 120 : 0 }} // Increased padding to accommodate tab nav
       >
-        <ThemedText type="title" style={styles.welcomeText}>
-          Welcome!
-        </ThemedText>
         {products?.products.map((product) => {
           const cartItem = items.find((item) => item.product.id === product.id);
           return (
@@ -144,7 +142,11 @@ export default function HomeScreen() {
                       handleRemoveItem(product.id.toString(), product.name)
                     }
                   >
-                    <Ionicons name="trash-outline" size={20} color="#FF3B30" />
+                    <Ionicons
+                      name="trash-outline"
+                      size={20}
+                      color={brandColors.neutral[900]}
+                    />
                   </TouchableOpacity>
                 </View>
               ) : (
@@ -166,23 +168,10 @@ export default function HomeScreen() {
         <View style={styles.checkoutContainer}>
           <View style={styles.checkoutRow}>
             <TouchableOpacity
-              style={[
-                styles.checkoutButton,
-                {
-                  backgroundColor: "#007AFF",
-                  padding: 16,
-                  borderRadius: 8,
-                  flex: 1,
-                },
-              ]}
+              style={styles.checkoutButton}
               onPress={() => router.push("/(sweet-cuts)/cart/checkout")}
             >
-              <ThemedText
-                style={[
-                  styles.checkoutText,
-                  { color: "#fff", textAlign: "center", fontSize: 16 },
-                ]}
-              >
+              <ThemedText style={styles.checkoutText}>
                 Checkout (${total.toFixed(2)})
               </ThemedText>
             </TouchableOpacity>
@@ -190,7 +179,11 @@ export default function HomeScreen() {
               style={styles.clearCartButton}
               onPress={handleClearCart}
             >
-              <Ionicons name="trash-outline" size={24} color="#FF3B30" />
+              <Ionicons
+                name="trash-outline"
+                size={24}
+                color={brandColors.neutral[900]}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -198,7 +191,6 @@ export default function HomeScreen() {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -222,7 +214,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: brandColors.neutral[300],
   },
   productInfo: {
     flex: 1,
@@ -230,14 +222,15 @@ const styles = StyleSheet.create({
   productName: {
     fontSize: 16,
     fontWeight: "bold",
+    color: brandColors.neutral[900],
   },
   quantity: {
     fontWeight: "normal",
-    color: "#666",
+    color: brandColors.sky[900],
   },
   price: {
     marginTop: 4,
-    color: "#666",
+    color: brandColors.sky[900],
   },
   controlsContainer: {
     flexDirection: "row",
@@ -247,7 +240,7 @@ const styles = StyleSheet.create({
   quantityControls: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: brandColors.neutral[200],
     borderRadius: 8,
     padding: 4,
   },
@@ -256,8 +249,7 @@ const styles = StyleSheet.create({
     height: 32,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#e0e0e0",
-    borderRadius: 16,
+    backgroundColor: brandColors.neutral[300],
   },
   quantityButtonText: {
     fontSize: 18,
@@ -271,44 +263,46 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   addButton: {
-    backgroundColor: "#007AFF",
+    backgroundColor: brandColors.sky[700],
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 8,
   },
   addButtonText: {
-    color: "white",
+    color: brandColors.neutral[50],
     fontWeight: "bold",
   },
   checkoutContainer: {
     position: "absolute",
-    bottom: 80, // Increased bottom position to appear above tab nav
+    bottom: 80,
     left: 0,
     right: 0,
     padding: 16,
-    backgroundColor: "white",
-    borderTopWidth: 1,
-    borderTopColor: "#eee",
+    backgroundColor: brandColors.neutral[50],
+    borderTopWidth: 2,
+    borderTopColor: brandColors.neutral[300],
   },
   checkoutRow: {
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     gap: 12,
   },
   checkoutButton: {
-    backgroundColor: "#34C759",
+    flex: 1,
+    backgroundColor: brandColors.sky[700],
     padding: 16,
     borderRadius: 8,
     alignItems: "center",
   },
   checkoutText: {
-    color: "white",
+    color: brandColors.neutral[50],
     fontSize: 18,
     fontWeight: "bold",
   },
   clearCartButton: {
     padding: 12,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: brandColors.neutral[100],
     borderRadius: 8,
   },
 });

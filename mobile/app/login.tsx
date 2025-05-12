@@ -1,3 +1,4 @@
+import { brandColors } from "@/constants/Colors";
 import { useCurrentUser } from "@/contexts/CurrentUserProvider";
 import { useLogin } from "@/hooks/auth/login";
 import { useRouter } from "expo-router";
@@ -92,16 +93,21 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 20,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: brandColors.sky[900],
   },
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: brandColors.neutral[50],
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+    color: brandColors.sky[900],
   },
   form: {
     width: "80%",
@@ -110,24 +116,25 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: brandColors.sky[700],
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 10,
+    backgroundColor: brandColors.sky[50],
   },
   button: {
-    backgroundColor: "#007AFF",
+    backgroundColor: brandColors.sky[700],
     padding: 15,
     borderRadius: 5,
     alignItems: "center",
   },
   buttonText: {
-    color: "white",
+    color: brandColors.sky[50],
     fontSize: 16,
     fontWeight: "bold",
   },
   error: {
-    color: "red",
+    color: brandColors.sky[900],
     marginBottom: 10,
   },
 });
