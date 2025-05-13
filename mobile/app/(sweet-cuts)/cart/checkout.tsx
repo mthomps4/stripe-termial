@@ -1,4 +1,3 @@
-import { ThemedText } from "@/components/ThemedText";
 import { brandColors } from "@/constants/Colors";
 import { useCart } from "@/contexts/CartProvider";
 import { Ionicons } from "@expo/vector-icons";
@@ -15,22 +14,18 @@ export default function CheckoutScreen() {
         <Text style={styles.backLinkText}>Manage Cart</Text>
       </TouchableOpacity>
       <View style={styles.summaryContainer}>
-        <ThemedText type="title" style={styles.summaryTitle}>
-          Order Summary
-        </ThemedText>
+        <Text style={[styles.summaryTitle, styles.title]}>Order Summary</Text>
 
         {items.map((item) => (
           <View key={item.product.id} style={styles.itemRow}>
             <View style={styles.itemNameContainer}>
-              <ThemedText style={styles.itemName}>
-                {item.product.name}
-              </ThemedText>
-              <ThemedText style={styles.quantity}>x{item.quantity}</ThemedText>
+              <Text style={styles.itemName}>{item.product.name}</Text>
+              <Text style={styles.quantity}>x{item.quantity}</Text>
             </View>
             <View style={styles.quantityPrice}>
-              <ThemedText style={styles.price}>
+              <Text style={styles.price}>
                 ${(item.product.price * item.quantity).toFixed(2)}
-              </ThemedText>
+              </Text>
             </View>
           </View>
         ))}
@@ -38,10 +33,8 @@ export default function CheckoutScreen() {
         <View style={styles.divider} />
 
         <View style={styles.totalRow}>
-          <ThemedText style={styles.totalLabel}>Total</ThemedText>
-          <ThemedText style={styles.totalAmount}>
-            ${total.toFixed(2)}
-          </ThemedText>
+          <Text style={styles.totalLabel}>Total</Text>
+          <Text style={styles.totalAmount}>${total.toFixed(2)}</Text>
         </View>
 
         <TouchableOpacity
@@ -51,9 +44,7 @@ export default function CheckoutScreen() {
             alert("Checkout functionality coming soon!");
           }}
         >
-          <ThemedText style={styles.checkoutButtonText}>
-            Complete Purchase
-          </ThemedText>
+          <Text style={styles.checkoutButtonText}>Complete Purchase</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -76,6 +67,11 @@ const styles = StyleSheet.create({
   summaryContainer: {
     flex: 1,
     padding: 16,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    lineHeight: 32,
   },
   summaryTitle: {
     marginBottom: 16,

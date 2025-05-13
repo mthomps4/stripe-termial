@@ -1,4 +1,3 @@
-import { ThemedText } from "@/components/ThemedText";
 import { brandColors } from "@/constants/Colors";
 import { useCart } from "@/contexts/CartProvider";
 import { useGetProducts } from "@/hooks/products/useGetProducts";
@@ -8,6 +7,7 @@ import {
   Alert,
   ScrollView,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -65,7 +65,7 @@ export default function HomeScreen() {
   if (isLoading) {
     return (
       <View style={styles.mainContainer}>
-        <ThemedText>Loading...</ThemedText>
+        <Text>Loading...</Text>
       </View>
     );
   }
@@ -73,7 +73,7 @@ export default function HomeScreen() {
   if (error) {
     return (
       <View style={styles.mainContainer}>
-        <ThemedText>Error: {error.message}</ThemedText>
+        <Text>Error: {error.message}</Text>
       </View>
     );
   }
@@ -89,16 +89,13 @@ export default function HomeScreen() {
           return (
             <View key={product.id} style={styles.productRow}>
               <View style={styles.productInfo}>
-                <ThemedText style={styles.productName}>
+                <Text style={styles.productName}>
                   {product.name}
                   {cartItem && (
-                    <ThemedText style={styles.quantity}>
-                      {" "}
-                      (x{cartItem.quantity})
-                    </ThemedText>
+                    <Text style={styles.quantity}> (x{cartItem.quantity})</Text>
                   )}
-                </ThemedText>
-                <ThemedText style={styles.price}>${product.price}</ThemedText>
+                </Text>
+                <Text style={styles.price}>${product.price}</Text>
               </View>
 
               {cartItem ? (
@@ -113,14 +110,10 @@ export default function HomeScreen() {
                         )
                       }
                     >
-                      <ThemedText style={styles.quantityButtonText}>
-                        -
-                      </ThemedText>
+                      <Text style={styles.quantityButtonText}>-</Text>
                     </TouchableOpacity>
 
-                    <ThemedText style={styles.quantityText}>
-                      {cartItem.quantity}
-                    </ThemedText>
+                    <Text style={styles.quantityText}>{cartItem.quantity}</Text>
 
                     <TouchableOpacity
                       style={styles.quantityButton}
@@ -131,9 +124,7 @@ export default function HomeScreen() {
                         )
                       }
                     >
-                      <ThemedText style={styles.quantityButtonText}>
-                        +
-                      </ThemedText>
+                      <Text style={styles.quantityButtonText}>+</Text>
                     </TouchableOpacity>
                   </View>
                   <TouchableOpacity
@@ -154,9 +145,7 @@ export default function HomeScreen() {
                   style={styles.addButton}
                   onPress={() => addItem(product)}
                 >
-                  <ThemedText style={styles.addButtonText}>
-                    Add to Cart
-                  </ThemedText>
+                  <Text style={styles.addButtonText}>Add to Cart</Text>
                 </TouchableOpacity>
               )}
             </View>
@@ -171,9 +160,9 @@ export default function HomeScreen() {
               style={styles.checkoutButton}
               onPress={() => router.push("/(sweet-cuts)/cart/checkout")}
             >
-              <ThemedText style={styles.checkoutText}>
+              <Text style={styles.checkoutText}>
                 Checkout (${total.toFixed(2)})
-              </ThemedText>
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.clearCartButton}

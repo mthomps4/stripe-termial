@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
 import { useCurrentUser } from "@/contexts/CurrentUserProvider";
 import { logout } from "@/utils/auth";
 import { Stack, useRouter } from "expo-router";
-import { Button, StyleSheet } from "react-native";
-import { ThemedView } from "@/components/ThemedView";
-import { ThemedText } from "@/components/ThemedText";
+import React, { useEffect } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function ConnectWarning() {
   const { user, setToken, setUser } = useCurrentUser();
@@ -24,15 +22,15 @@ export default function ConnectWarning() {
   }, [user, router]);
 
   return (
-    <ThemedView style={styles.container}>
+    <View style={styles.container}>
       <Stack.Screen options={{ title: "Complete Your Registration" }} />
-      <ThemedText style={styles.title}>Complete Your Registration</ThemedText>
-      <ThemedText style={styles.message}>
+      <Text style={styles.title}>Complete Your Registration</Text>
+      <Text style={styles.message}>
         Please login on desktop to complete your Stripe Onboarding
-      </ThemedText>
+      </Text>
 
       <Button title="Logout" onPress={() => logoutUser()} />
-    </ThemedView>
+    </View>
   );
 }
 

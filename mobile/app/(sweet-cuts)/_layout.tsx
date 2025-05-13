@@ -1,9 +1,9 @@
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
 
-import { HapticTab } from "@/components/HapticTab";
-import { IconSymbol } from "@/components/ui/IconSymbol";
+import { HapticTab } from "@/components/ui/HapticTab";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
@@ -40,18 +40,18 @@ export default function TabLayout() {
           headerShown: true,
           headerTitle: "Sweet Cuts",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="cart.fill" color={color} />
+            <MaterialIcons size={28} name="shopping-cart" color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="account"
+        name="settings"
         options={{
-          title: "Account",
+          title: "Settings",
           headerShown: true,
-          headerTitle: "Account Management",
+          headerTitle: "Settings",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person.fill" color={color} />
+            <MaterialIcons size={28} name="settings" color={color} />
           ),
         }}
       />

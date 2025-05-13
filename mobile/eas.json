@@ -17,7 +17,7 @@
       },
       "env": {
         "BUILD_ENV": "development",
-        "API_URL": "https://fc4458f2f2f9.ngrok.app"
+        "API_URL": "https://c5e622208eea.ngrok.app"
       }
     },
     "staging": {
@@ -49,17 +49,11 @@
     "staging": {
       "ios": {
         "bundleIdentifier": "com.staging.mt-sweet-cuts-pos.app"
-      },
-      "android": {
-        "package": "com.staging.mt-sweet-cuts-pos.app"
       }
     },
     "production": {
       "ios": {
         "bundleIdentifier": "com.mt-sweet-cuts-pos.app"
-      },
-      "android": {
-        "package": "com.mt-sweet-cuts-pos.app"
       }
     }
   }
